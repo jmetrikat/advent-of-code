@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-def compare(first, second):
+def compare():
     global priority
     for x in firstpart:
         for y in secondpart:
@@ -12,12 +12,13 @@ def compare(first, second):
                     priority += ord(x)-96
                     return
 
+
 priority = 0
-f=open("day-03-input.txt", "r")
+f = open("day-03-input.txt", "r")
 
 for line in f:
     firstpart, secondpart = line[:len(line)//2], line[len(line)//2:]
-    compare(firstpart, secondpart)
+    compare()
 
 print(priority)
 
