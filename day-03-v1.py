@@ -21,8 +21,3 @@ for line in f:
     compare()
 
 print(priority)
-
-
-
-
-        
