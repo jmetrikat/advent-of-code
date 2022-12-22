@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-import string
 
 def compare(lines: list):
     global priority
