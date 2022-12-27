@@ -1,4 +1,7 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" --- Advent of Code 2022 - Day 8: Treetop Tree House ---  """
 
 # viewing distance to the north?
 def check_north(i, j):
