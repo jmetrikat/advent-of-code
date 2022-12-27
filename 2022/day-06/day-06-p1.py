@@ -1,4 +1,7 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" --- Advent of Code 2022 - Day 6: Tuning Trouble ---  """
 
 input = []
 

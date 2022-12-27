@@ -1,6 +1,9 @@
-#! /usr/bin/env python
-input = []
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+""" --- Advent of Code 2022 - Day 6: Tuning Trouble ---  """
+
+input = []
 
 def all_different(i):
     for j in range(0, 13):
