@@ -1,15 +1,18 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" --- Advent of Code 2022 - Day 9: Rope Bridge ---  """
 
 import numpy as np
 
 with open("day-09-input.txt") as f:
     input = f.readlines()
 
-# represent the position of head and tail as a tupel
+# represent the position of head and tail as a tuple
 head = (0, 0)
 tail = (0, 0)
 
-# use a set as data struture, so that duplicates are ignored
+# use a set() as data structure, so that duplicates are ignored
 tail_pos_visited = set()
 # starting position has also been visited
 tail_pos_visited.add(tail)
@@ -18,7 +21,7 @@ for line in input:
     dir, steps = line.split()
 
     # grid mapping for the directions
-    for k in range(int(steps)):
+    for _ in range(int(steps)):
         match dir:
             case 'R':
                 head = (head[0] + 1, head[1])
