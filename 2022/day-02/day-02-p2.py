@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" --- Advent of Code 2022 - Day 2: Rock Paper Scissors ---  """
 
 score = 0
 
@@ -23,5 +26,5 @@ for line in f:
         score = score + 6
     elif line == "C Z\n":
         score = score + 7
-        
+
 print(score)
