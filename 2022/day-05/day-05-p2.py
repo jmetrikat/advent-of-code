@@ -1,6 +1,9 @@
-#! /usr/bin/env python
-import re
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+""" --- Advent of Code 2022 - Day 5: Supply Stacks ---  """
+
+import re
 
 # initalize the programm and return stacks as array and procedures as lines
 def init():
