@@ -4,7 +4,6 @@
 """ --- Advent of Code 2022 - Day 2: Rock Paper Scissors --- """
 
 score = 0
-
 f = open("day-02-input.txt", "r")
 
 for line in f:

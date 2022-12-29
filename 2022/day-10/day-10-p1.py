@@ -6,7 +6,7 @@
 # increment the cycle counter and update the score for given cycles
 def tick():
     global no_cycles, x, score
-    if (no_cycles == 20 or no_cycles == 60 or no_cycles == 100 or no_cycles == 140 or no_cycles == 180 or no_cycles ==220):
+    if (no_cycles == 20 or no_cycles == 60 or no_cycles == 100 or no_cycles == 140 or no_cycles == 180 or no_cycles == 220):
         score += no_cycles * x
     no_cycles += 1
     return
@@ -31,3 +31,4 @@ for line in input:
         x += int(value)
 
 print(score)
+

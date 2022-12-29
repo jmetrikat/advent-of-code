@@ -3,24 +3,29 @@
 
 """ --- Advent of Code 2022 - Day 3: Rucksack Reorganization --- """
 
+# find the common item and calculate its priority
 def compare():
     global priority
-    for x in firstpart:
-        for y in secondpart:
-            if x == y:
-                if x.isupper():
-                    priority += ord(x)-38
+
+    for item_1 in first_compartment:
+        for item_2 in second_compartment:
+
+            # common item found
+            if item_1 == item_2:
+                if item_1.isupper():
+                    priority += ord(item_1)-38
                     return
                 else:
-                    priority += ord(x)-96
+                    priority += ord(item_1)-96
                     return
 
 
 priority = 0
 f = open("day-03-input.txt", "r")
 
+# separate the compartments by splitting the line in half and compare their items
 for line in f:
-    firstpart, secondpart = line[:len(line)//2], line[len(line)//2:]
+    first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
     compare()
 
 print(priority)
