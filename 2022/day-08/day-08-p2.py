@@ -49,18 +49,19 @@ def check_east(i, j):
 
 # main entry point
 with open("day-08-input.txt") as f:
+    max_score = 0
     input = f.read().split("\n")
 
-max_score = 0
+    # calculate score for each tree
+    for i in range(len(input)-1):
+        for j in range(len(input[i])):
+            if i != 1 and j != 0 and i != 98 and j != 98:
 
-for i in range(len(input)-1):
-    for j in range(len(input[i])):
-        if i != 1 and j != 0 and i != 98 and j != 98:
+                score = 1
+                score *= check_north(i, j) * check_south(i, j) * check_west(i, j) * check_east(i, j)
 
-            score = 1
-            score *= check_north(i, j) * check_south(i, j) * check_west(i, j) * check_east(i, j)
-
-            if score > max_score:
-                max_score = score
+                # update max score
+                if score > max_score:
+                    max_score = score
 
 print(max_score)

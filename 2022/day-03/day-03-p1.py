@@ -19,13 +19,12 @@ def compare():
                     priority += ord(item_1)-96
                     return
 
-
 priority = 0
-f = open("day-03-input.txt", "r")
 
 # separate the compartments by splitting the line in half and compare their items
-for line in f:
-    first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
-    compare()
+with open("day-03-input.txt") as f:
+    for line in f:
+        first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
+        compare()
 
 print(priority)

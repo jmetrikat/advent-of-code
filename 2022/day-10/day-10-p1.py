@@ -13,22 +13,19 @@ def tick():
 
 
 with open("day-10-input.txt") as f:
-    input = f.readlines()
+    # store number of cycles, value in register x and final score
+    no_cycles = 1
+    x = 1
+    score = 0
 
-# store number of cycles, value in register x and final score
-no_cycles = 1
-x = 1
-score = 0
-
-# noop takes 1 cycle, addx takes 2 cycles
-for line in input:
-    if line == "noop\n":
-        tick()
-    else:
-        tick()
-        tick()
-        instruction, value = line.split()
-        x += int(value)
+    # noop takes 1 cycle, addx takes 2 cycles
+    for line in f.readlines():
+        if line == "noop\n":
+            tick()
+        else:
+            tick()
+            tick()
+            instruction, value = line.split()
+            x += int(value)
 
 print(score)
-
