@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 4: Camp Cleanup ---  """
+""" --- Advent of Code 2022 - Day 4: Camp Cleanup --- """
 
 import re
 

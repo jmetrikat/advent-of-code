@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 8: Treetop Tree House ---  """
+""" --- Advent of Code 2022 - Day 8: Treetop Tree House --- """
 
 # tree visible to the north?
 def check_north(i, j):

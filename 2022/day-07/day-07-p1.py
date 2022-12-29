@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 7: No Space Left On Device ---  """
+""" --- Advent of Code 2022 - Day 7: No Space Left On Device --- """
 
 with open("day-07-input.txt") as f:
     input = f.readlines()

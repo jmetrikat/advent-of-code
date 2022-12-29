@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 9: Rope Bridge ---  """
+""" --- Advent of Code 2022 - Day 9: Rope Bridge --- """
 
 import numpy as np
 

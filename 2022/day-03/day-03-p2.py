@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 3: Rucksack Reorganization ---  """
+""" --- Advent of Code 2022 - Day 3: Rucksack Reorganization --- """
 
 def compare(lines: list):
     global priority

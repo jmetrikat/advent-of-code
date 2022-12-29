@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 1: Calorie Counting ---  """
+""" --- Advent of Code 2022 - Day 1: Calorie Counting --- """
 
 blocks = []
 

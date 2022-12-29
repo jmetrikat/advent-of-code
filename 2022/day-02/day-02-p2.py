@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" --- Advent of Code 2022 - Day 2: Rock Paper Scissors ---  """
+""" --- Advent of Code 2022 - Day 2: Rock Paper Scissors --- """
 
 score = 0
 
