@@ -10,19 +10,88 @@ int solution(char part[], char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
 
-    /* solution part-1 */
-    if (!strcmp(part, "-p1")) {
-        // TODO
+    /* file opened successfully */
+    if (fp != NULL) {
+        /* solution part-1 */
+        if (!strcmp(part, "-p1")) {
+            int final_score = 0;
 
-        return 0;
+            while (fgets(buffer, MAX_LENGTH, fp)) {
+                /* check the format */
+                if (strlen(buffer) < 3) {
+                    fprintf(stderr, "Incorrect format in line \'%s\'\n", buffer);
+                    return 1;
+                }
+
+                /* check for invalid moves */
+                if ((buffer[0] != 'A' && buffer[0] != 'B' && buffer[0] != 'C') || (buffer[2] != 'X' && buffer[2] != 'Y' && buffer[2] != 'Z')) {
+                    fprintf(stderr, "Incorrect format: \'%c %c\' Moves should be A, B or C and X, Y or Z\n", buffer[0], buffer[2]);
+                    return 1;
+                }
+
+                /* map the moves to values */
+                int me = buffer[2] - 'X';
+                int opp = buffer[0] - 'A';
+
+                /* calculate the score */
+                int score = (me == opp) ? 3 : ((me == 0 && opp == 2) || (me == 2 && opp == 1) || (me == 1 && opp == 0)) ? 6 : 0;
+                int shape_score = me + 1;
+                final_score += (score + shape_score);
+            }
+
+            printf("%d\n", final_score);
+            return 0;
+        }
+
+        /* solution part-2 */
+        if (!strcmp(part, "-p2")) {
+            int final_score = 0;
+
+            while (fgets(buffer, MAX_LENGTH, fp)) {
+                /* check the format */
+                if (strlen(buffer) < 3) {
+                    fprintf(stderr, "Incorrect format in line \'%s\'\n", buffer);
+                    return 1;
+                }
+
+                /* check for invalid moves */
+                if ((buffer[0] != 'A' && buffer[0] != 'B' && buffer[0] != 'C') || (buffer[2] != 'X' && buffer[2] != 'Y' && buffer[2] != 'Z')) {
+                    fprintf(stderr, "Incorrect format: \'%c %c\' Moves should be A, B or C and X, Y or Z\n", buffer[0], buffer[2]);
+                    return 1;
+                }
+
+                /* map the moves to values */
+                int opp = buffer[0] - 'A';
+                int outcome = buffer[2] - 'X';
+                int me;
+
+                /* figure out what shape to choose */
+                switch (outcome) {
+                    case 0:
+                        me = (opp == 0) ? 2 : (opp == 1) ? 0 : 1;
+                        break;
+                    case 1:
+                        me = opp;
+                        break;
+                    case 2:
+                        me = (opp == 0) ? 1 : (opp == 1) ? 2 : 0;
+                        break;
+                }
+
+                int score = outcome * 3;
+                int shape_score = me + 1;
+                final_score += (score + shape_score);
+            }
+
+            printf("%d\n", final_score);
+            return 0;
+        }
+    /* file not found */
+    } else {
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
+        exit(1);
     }
-
-    /* solution part-2 */
-    if (!strcmp(part, "-p2")) {
-        // TODO
-
-        return 0;
-    }
+    return 1;
 }
 
 /* main function */
