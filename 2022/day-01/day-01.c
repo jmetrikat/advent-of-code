@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LENGTH 128
+#define MAX_LENGTH 256
 #define MAX_ELVES 1000
 
 /* solution function */
