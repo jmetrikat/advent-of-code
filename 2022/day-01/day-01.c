@@ -7,13 +7,13 @@
 #define MAX_LENGTH 256
 #define MAX_ELVES 1000
 
-/* solution function */
-int solution(char part[], char input_file[]) {
+/* solution part-1 */
+int part_1(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
 
-    /* solution part-1 */
-    if (!strcmp(part, "-p1")) {
+    /* file opened successfully */
+    if (fp != NULL) {
         int calories_count = 0;
         int max_calories = 0;
 
@@ -26,23 +26,36 @@ int solution(char part[], char input_file[]) {
                     max_calories = calories_count;
                 }
                 /* reset calories count after empty line */
-                    calories_count = 0;
+                calories_count = 0;
             } else {
                 calories_count += value;
             }
         }
 
         printf("%d\n", max_calories);
-        return 0;
+
+    /* file not found */
+    } else {
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
+        exit(1);
     }
 
-    /* solution part-2 */
-    if (!strcmp(part, "-p2")) {
+    return 0;;
+}
+
+
+/* solution part-2 */
+int part_2(char input_file[]) {
+    FILE *fp = fopen(input_file, "r");
+    char buffer[MAX_LENGTH];
+
+    /* file opened successfully */
+    if (fp != NULL) {
         int calories_count = 0;
         int elv_count = 1;
         int elv_calories[MAX_ELVES] = {0};
 
-        while(fgets(buffer, MAX_LENGTH, fp)) {
+        while (fgets(buffer, MAX_LENGTH, fp)) {
             int value = atoi(buffer);
 
             if (value == 0) {
@@ -55,8 +68,8 @@ int solution(char part[], char input_file[]) {
 
         /* sort elv_calories using bubble sort */
         for (int i = 0; i < elv_count; i++) {
-            for (int j = i+1; j < elv_count; j++) {
-                if(elv_calories[i] < elv_calories[j]) {
+            for (int j = i + 1; j < elv_count; j++) {
+                if (elv_calories[i] < elv_calories[j]) {
                     int temp = elv_calories[i];
                     elv_calories[i] = elv_calories[j];
                     elv_calories[j] = temp;
@@ -65,10 +78,14 @@ int solution(char part[], char input_file[]) {
         }
 
         printf("%d\n", elv_calories[0] + elv_calories[1] + elv_calories[2]);
-        return 0;
+
+    /* file not found */
+    } else {
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
+        exit(1);
     }
 
-    return 1;
+    return 0;
 }
 
 /* main function */
@@ -78,8 +95,10 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (!strcmp(argv[1], "-p1") || !strcmp(argv[1], "-p2")) {
-        solution(argv[1], argv[2]);
+    if (!strcmp(argv[1], "-p1")) {
+        part_1(argv[2]);
+    } else if (!strcmp(argv[1], "-p2")) {
+        part_2(argv[2]);
     } else {
         fprintf(stderr, "Invalid argument: %s\n", argv[1]);
         return 1;
