@@ -14,7 +14,7 @@ int part_1(char input_file[]) {
     if (fp != NULL) {
         int final_score = 0;
 
-        while (fgets(buffer, MAX_LENGTH, fp)) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
             if (strlen(buffer) < 3) {
                 fprintf(stderr, "Incorrect format in line \'%s\'\n", buffer);
@@ -56,7 +56,7 @@ int part_2(char input_file[]) {
     if (fp != NULL) {
         int final_score = 0;
 
-        while (fgets(buffer, MAX_LENGTH, fp)) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
             if (strlen(buffer) < 3) {
                 fprintf(stderr, "Incorrect format in line \'%s\'\n", buffer);

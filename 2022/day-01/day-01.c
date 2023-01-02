@@ -17,7 +17,7 @@ int part_1(char input_file[]) {
         int calories_count = 0;
         int max_calories = 0;
 
-        while (fgets(buffer, MAX_LENGTH, fp)) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             int value = atoi(buffer);
 
             /* sum up calories for each elf, compare with max calories and */
@@ -55,7 +55,7 @@ int part_2(char input_file[]) {
         int elv_count = 1;
         int elv_calories[MAX_ELVES] = {0};
 
-        while (fgets(buffer, MAX_LENGTH, fp)) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             int value = atoi(buffer);
 
             if (value == 0) {

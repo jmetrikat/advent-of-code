@@ -14,10 +14,10 @@ def compare(lines: list):
                 # common item found
                 if item_1 == item_2 and item_2 == item_3:
                     if item_1.isupper():
-                        priority += ord(item_1)-38
+                        priority += ord(item_1) - ord('A') + 27
                         return
                     else:
-                        priority += ord(item_1)-96
+                        priority += ord(item_1) - ord('a') + 1
                         return
 
 

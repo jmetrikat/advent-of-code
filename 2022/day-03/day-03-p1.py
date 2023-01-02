@@ -12,11 +12,12 @@ def compare():
 
             # common item found
             if item_1 == item_2:
+                print(item_1)
                 if item_1.isupper():
-                    priority += ord(item_1)-38
+                    priority += ord(item_1) - ord('A') + 27
                     return
                 else:
-                    priority += ord(item_1)-96
+                    priority += ord(item_1) - ord('a') + 1
                     return
 
 priority = 0
@@ -27,4 +28,4 @@ with open("day-03-input.txt") as f:
         first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
         compare()
 
-print(priority)
+        print(priority)
