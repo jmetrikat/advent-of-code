@@ -6,6 +6,7 @@
 
 #define MAX_LENGTH 256
 
+/* solution part-1 */
 int part_1(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
@@ -42,12 +43,13 @@ int part_1(char input_file[]) {
     /* file not found */
     } else {
         fprintf(stderr, "Problems opening file '%s'\n", input_file);
-        exit(1);
+        exit (1);
     }
 
     return 0;
 }
 
+/* solution part-2 */
 int part_2(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
@@ -77,15 +79,13 @@ int part_2(char input_file[]) {
             /* figure out what shape to choose */
             switch (outcome) {
                 case 0:
-                    me = (opp == 0) ? 2 : (opp == 1) ? 0
-                                                        : 1;
+                    me = (opp == 0) ? 2 : (opp == 1) ? 0 : 1;
                     break;
                 case 1:
                     me = opp;
                     break;
                 case 2:
-                    me = (opp == 0) ? 1 : (opp == 1) ? 2
-                                                        : 0;
+                    me = (opp == 0) ? 1 : (opp == 1) ? 2 : 0;
                     break;
             }
 
@@ -99,7 +99,7 @@ int part_2(char input_file[]) {
     /* file not found */
     } else {
         fprintf(stderr, "Problems opening file '%s'\n", input_file);
-        exit(1);
+        exit (1);
     }
 
     return 0;

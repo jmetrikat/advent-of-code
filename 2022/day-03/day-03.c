@@ -18,13 +18,12 @@ int part_1(char input_file[]) {
 
         while (fgets(buffer, MAX_LENGTH - 1, fp) != NULL) {
             /* trim trailing whitespaces */
-            int i;
-            for (i = strlen(buffer) - 1; i >= 0; i--) {
-                if (buffer[i] != ' ' && buffer[i] != '\t' && buffer[i] != '\r' && buffer[i] != '\n'){
+            for (int i = strlen(buffer) - 1; i >= 0; i--) {
+                if (buffer[i] != ' ' && buffer[i] != '\t' && buffer[i] != '\r' && buffer[i] != '\n') {
+                    buffer[i + 1] = '\0';
                     break;
                 }
             }
-            buffer[i+1] = '\0';
 
             /* check the format */
             if (strlen(buffer) % 2 != 0) {
@@ -36,7 +35,7 @@ int part_1(char input_file[]) {
             int found_duplicate = 0;
             for (int i = 0; i < strlen(buffer) / 2; i++) {
                 for (int j = strlen(buffer) / 2; j < strlen(buffer); j++) {
-                    if (buffer[i] == buffer[j]){
+                    if (buffer[i] == buffer[j]) {
                         duplicate = buffer[i];
                         found_duplicate = 1;
 
@@ -81,13 +80,12 @@ int part_2(char input_file[]) {
             /* groups of three */
             for (int k = 0; k < 3; k++) {
                 /* trim trailing whitespaces */
-                int i;
-                for (i = strlen(buffer[k]) - 1; i >= 0; i--) {
+                for (int i = strlen(buffer[k]) - 1; i >= 0; i--) {
                     if (buffer[k][i] != ' ' && buffer[k][i] != '\t' && buffer[k][i] != '\r' && buffer[k][i] != '\n') {
+                        buffer[k][i + 1] = '\0';
                         break;
                     }
                 }
-                buffer[k][i + 1] = '\0';
 
                 /* check the format */
                 if (strlen(buffer[k]) % 2 != 0) {
@@ -138,7 +136,7 @@ int main(int argc, char *argv[]) {
 
     if (!strcmp(argv[1], "-p1")) {
         part_1(argv[2]);
-    }else if (!strcmp(argv[1], "-p2")) {
+    } else if (!strcmp(argv[1], "-p2")) {
         part_2(argv[2]);
     } else {
         fprintf(stderr, "Invalid argument: '%s'\n", argv[1]);
