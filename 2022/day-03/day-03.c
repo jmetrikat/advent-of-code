@@ -28,7 +28,7 @@ int part_1(char input_file[]) {
             /* check the format */
             if (strlen(buffer) % 2 != 0) {
                 fprintf(stderr, "Incorrect format in line '%s' \n", buffer);
-                exit (1);
+                exit(1);
             }
 
             /* find the common item */
@@ -54,7 +54,7 @@ int part_1(char input_file[]) {
     /* file not found */
     } else {
         fprintf(stderr,"Problems opening file '%s'\n", input_file);
-        exit (1);
+        exit(1);
     }
 
     return 0;
@@ -74,7 +74,7 @@ int part_2(char input_file[]) {
             /* read the next two lines for the block-of-three */
             if (fgets(buffer[1], MAX_LENGTH - 1, fp) == 0 || fgets(buffer[2], MAX_LENGTH - 1, fp) == 0) {
                 fprintf(stderr, "Incorrect format: Number of rucksacks must be a multiple of three.\n");
-                exit (1);
+                exit(1);
             }
 
             /* groups of three */
@@ -90,7 +90,7 @@ int part_2(char input_file[]) {
                 /* check the format */
                 if (strlen(buffer[k]) % 2 != 0) {
                     fprintf(stderr, "Incorrect format in line '%s' \n", buffer[k]);
-                    exit (1);
+                    exit(1);
                 }
             }
 
@@ -121,7 +121,7 @@ int part_2(char input_file[]) {
         /* file not found */
     } else {
         fprintf(stderr,"Problems opening file '%s'\n", input_file);
-        exit (1);
+        exit(1);
     }
 
     return 0;

@@ -37,7 +37,7 @@ int part_1(char input_file[]) {
     /* file not found */
     } else {
         fprintf(stderr, "Problems opening file '%s'\n", input_file);
-        exit (1);
+        exit(1);
     }
 
     return 0;
@@ -81,7 +81,7 @@ int part_2(char input_file[]) {
     /* file not found */
     } else {
         fprintf(stderr, "Problems opening file '%s'\n", input_file);
-        exit (1);
+        exit(1);
     }
 
     return 0;
