@@ -6,9 +6,9 @@
 
 # check if all 14 characters are different
 def is_marker(i, MARKER_SIZE):
-    for j in range(0, MARKER_SIZE-1):
+    for j in range(0, MARKER_SIZE - 1):
         for k in range(1, MARKER_SIZE):
-            if input[i+j] == input[i+k] and i+j != i+k:
+            if input[i + j] == input[i + k] and (i + j) != (i + k):
                 return 0
 
     return 1
