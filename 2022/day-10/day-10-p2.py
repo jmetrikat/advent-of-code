@@ -31,7 +31,7 @@ with open("day-10-input.txt") as f:
     for line in f.readlines():
         if line == "noop\n":
             tick()
-        else:
+        elif line[0:4] == "addx":
             tick()
             tick()
             instruction, value = line.split()

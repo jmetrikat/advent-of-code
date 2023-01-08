@@ -45,7 +45,7 @@ with open("day-08-input.txt") as f:
     input = f.read().split("\n")
 
     # check if tree is visible to any direction
-    for i in range(len(input)-1):
+    for i in range(len(input) - 1):
         for j in range(len(input[i])):
 
             # increase counter, if tree is visible

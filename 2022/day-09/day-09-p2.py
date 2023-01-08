@@ -35,8 +35,8 @@ with open("day-09-input.txt") as f:
                     knots[0] = (knots[0][0], knots[0][1] - 1)
 
             for k in range (NO_KNOTS-1):
-                diff_x = knots[k][0] - knots[k+1][0]
-                diff_y = knots[k][1] - knots[k+1][1]
+                diff_x = knots[k][0] - knots[k + 1][0]
+                diff_y = knots[k][1] - knots[k + 1][1]
 
                 # check if knot #k is touching knot #k+1 ...
                 if abs(diff_x) <= 1 and abs(diff_y) <= 1:
@@ -44,7 +44,7 @@ with open("day-09-input.txt") as f:
 
                 # ... otherwise adjust the knot #k+1 and add position of last knot (index: knots[-1]) to visited positions
                 else:
-                    knots[k+1] = (knots[k+1][0] + np.sign(diff_x), knots[k+1][1] + np.sign(diff_y))
+                    knots[k + 1] = (knots[k + 1][0] + np.sign(diff_x), knots[k + 1][1] + np.sign(diff_y))
                     tail_pos_visited.add(knots[-1])
 
 print(len(tail_pos_visited))

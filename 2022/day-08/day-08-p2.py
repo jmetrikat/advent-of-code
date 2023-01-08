@@ -17,7 +17,7 @@ def check_north(i, j):
 # viewing distance to the south?
 def check_south(i, j):
     distance = 0
-    for k in range(i+1, len(input)-1):
+    for k in range(i + 1, len(input) - 1):
         distance += 1
         if input[k][j] >= input[i][j]:
             break
@@ -39,7 +39,7 @@ def check_west(i, j):
 # viewing distance to the east?
 def check_east(i, j):
     distance = 0
-    for k in range(j+1, len(input[i])):
+    for k in range(j + 1, len(input[i])):
         distance += 1
         if input[i][k] >= input[i][j]:
             break
@@ -53,7 +53,7 @@ with open("day-08-input.txt") as f:
     input = f.read().split("\n")
 
     # calculate score for each tree
-    for i in range(len(input)-1):
+    for i in range(len(input) - 1):
         for j in range(len(input[i])):
             if i != 1 and j != 0 and i != 98 and j != 98:
 
