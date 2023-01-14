@@ -5,7 +5,6 @@
 
 # define marker size
 MARKER_SIZE = 4
-input = []
 
 # compare consecutive four characters and print starting position, if marker detected
 with open("day-06-input.txt") as f:

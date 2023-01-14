@@ -11,7 +11,7 @@ with open("day-09-input.txt") as f:
     knots = []
 
     # all 10 knots starting at (0,0)
-    for _ in range (NO_KNOTS):
+    for _ in range(NO_KNOTS):
         knots.append((0, 0))
 
     # use a set as data structure, so that duplicates are ignored
@@ -20,11 +20,11 @@ with open("day-09-input.txt") as f:
     tail_pos_visited.add(knots[-1])
 
     for line in f.readlines():
-        dir, steps = line.split()
+        direction, steps = line.split()
 
         # grid mapping for the directions
         for _ in range(int(steps)):
-            match dir:
+            match direction:
                 case 'R':
                     knots[0] = (knots[0][0] + 1, knots[0][1])
                 case 'L':
@@ -34,7 +34,7 @@ with open("day-09-input.txt") as f:
                 case 'D':
                     knots[0] = (knots[0][0], knots[0][1] - 1)
 
-            for k in range (NO_KNOTS-1):
+            for k in range(NO_KNOTS-1):
                 diff_x = knots[k][0] - knots[k + 1][0]
                 diff_y = knots[k][1] - knots[k + 1][1]
 
@@ -42,7 +42,7 @@ with open("day-09-input.txt") as f:
                 if abs(diff_x) <= 1 and abs(diff_y) <= 1:
                     continue
 
-                # ... otherwise adjust the knot #k+1 and add position of last knot (index: knots[-1]) to visited positions
+                # ... otherwise adjust knot #k+1 and add position of last knot (index: knots[-1]) to visited positions
                 else:
                     knots[k + 1] = (knots[k + 1][0] + np.sign(diff_x), knots[k + 1][1] + np.sign(diff_y))
                     tail_pos_visited.add(knots[-1])

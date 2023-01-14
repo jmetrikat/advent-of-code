@@ -5,7 +5,8 @@
 
 import re
 
-# initalize the programm and return stacks as array and procedures as lines
+
+# initialize the program and return stacks as array and procedures as lines
 def init():
     with open("day-05-input.txt", "r") as f:
         crates, procedures = f.read().split("\n\n")
@@ -18,7 +19,7 @@ def create_stacks(crates):
     *crates, num_stacks = crates.split("\n")
     num_stacks = len(num_stacks.split())
 
-    # creates an empty 2d array of lenght 9
+    # creates an empty 2d array of length 9
     stacks = [[] for _ in range(num_stacks)]
 
     # put crates into 2d array at stackIdx from bottom to top
@@ -32,7 +33,7 @@ def create_stacks(crates):
 
 
 # for every instruction find the 3 important numbers: #, from, to
-def parse_intructions(instruction):
+def parse_instructions(instruction):
     crates_to_move, to_stack, from_stack = map(int, re.findall(r"[0-9]*[0-9]+", instruction))
     return crates_to_move, to_stack-1, from_stack-1
 
@@ -41,7 +42,7 @@ def parse_intructions(instruction):
 stacks, procedures = init()
 for procedure in procedures:
     if procedure.strip():
-        crates_to_move, from_stack, to_stack = parse_intructions(procedure)
+        crates_to_move, from_stack, to_stack = parse_instructions(procedure)
 
         # move one crate at a time
         for _ in range(crates_to_move):

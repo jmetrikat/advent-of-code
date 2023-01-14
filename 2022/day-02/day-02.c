@@ -14,6 +14,8 @@ int part_1(char input_file[]) {
     /* file opened successfully */
     if (fp != NULL) {
         int final_score = 0;
+        int me = 0;
+        int opp = 0;
 
         while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
@@ -29,8 +31,8 @@ int part_1(char input_file[]) {
             }
 
             /* map the moves to values */
-            int me = buffer[2] - 'X';
-            int opp = buffer[0] - 'A';
+            me = buffer[2] - 'X';
+            opp = buffer[0] - 'A';
 
             /* calculate the score */
             int score = (me == opp) ? 3 : ((me == 0 && opp == 2) || (me == 2 && opp == 1) || (me == 1 && opp == 0)) ? 6 : 0;
@@ -57,6 +59,8 @@ int part_2(char input_file[]) {
     /* file opened successfully */
     if (fp != NULL) {
         int final_score = 0;
+        int me = 0;
+        int opp = 0;
 
         while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
@@ -72,9 +76,8 @@ int part_2(char input_file[]) {
             }
 
             /* map the moves to values */
-            int opp = buffer[0] - 'A';
+            opp = buffer[0] - 'A';
             int outcome = buffer[2] - 'X';
-            int me;
 
             /* figure out what shape to choose */
             switch (outcome) {

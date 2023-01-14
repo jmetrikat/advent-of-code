@@ -13,6 +13,7 @@ def is_marker(i, MARKER_SIZE):
 
     return 1
 
+
 # define marker size
 MARKER_SIZE = 14
 input = []

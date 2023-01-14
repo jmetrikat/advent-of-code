@@ -4,7 +4,7 @@
 """ --- Advent of Code 2022 - Day 7: No Space Left On Device --- """
 
 # use dictionary to store directories and size
-dirs = { "/root": 0 }
+dirs = {"/root": 0}
 
 # store current path
 path = "/root"

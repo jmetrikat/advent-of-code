@@ -3,16 +3,16 @@
 
 """ --- Advent of Code 2022 - Day 1: Calorie Counting --- """
 
-summe = 0
+calorie_sum = 0
 blocks = []
 
 with open('day-01-input.txt') as f:
     for line in f.readlines():
         if line == "\n":
-            blocks.append(summe)
-            summe = 0
+            blocks.append(calorie_sum)
+            calorie_sum = 0
         else:
-            summe = summe + int(line)
+            calorie_sum += int(line)
 
 blocks.sort()
 print(sum(blocks[-3:]))

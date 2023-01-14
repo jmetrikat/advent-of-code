@@ -3,6 +3,7 @@
 
 """ --- Advent of Code 2022 - Day 8: Treetop Tree House --- """
 
+
 # check if tree is visible to north
 def check_north(i, j):
     for k in range(0, i):
@@ -49,7 +50,7 @@ with open("day-08-input.txt") as f:
         for j in range(len(input[i])):
 
             # increase counter, if tree is visible
-            if (check_north(i, j) or check_south(i, j) or  check_west(i, j) or check_east(i, j)):
+            if check_north(i, j) or check_south(i, j) or  check_west(i, j) or check_east(i, j):
                 visible_cnt += 1
 
 print(visible_cnt)

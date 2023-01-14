@@ -14,7 +14,7 @@ with open("day-04-input.txt", "r") as f:
             elf1 = set(range(l1, l2+1))
             elf2 = set(range(r1, r2+1))
 
-            if (elf1.issubset(elf2) or elf2.issubset(elf1)):
+            if elf1.issubset(elf2) or elf2.issubset(elf1):
                 result += 1
 
 print(result)

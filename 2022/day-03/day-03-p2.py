@@ -3,6 +3,7 @@
 
 """ --- Advent of Code 2022 - Day 3: Rucksack Reorganization --- """
 
+
 # find the common item and calculate its priority
 def compare(lines: list):
     global priority
@@ -25,7 +26,7 @@ priority = 0
 counter = 0
 groupOfThree = []
 
-# seperate the elfs into groups of three and find the common item
+# separate the elfs into groups of three and find the common item
 with open("day-03-input.txt") as f:
     for line in f:
         counter = counter + 1

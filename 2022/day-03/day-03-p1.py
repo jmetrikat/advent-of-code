@@ -3,6 +3,7 @@
 
 """ --- Advent of Code 2022 - Day 3: Rucksack Reorganization --- """
 
+
 # find the common item and calculate its priority
 def compare():
     global priority
@@ -19,6 +20,7 @@ def compare():
                 else:
                     priority += ord(item_1) - ord('a') + 1
                     return
+
 
 priority = 0
 

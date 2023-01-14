@@ -16,11 +16,11 @@ with open("day-09-input.txt") as f:
     tail_pos_visited.add(tail)
 
     for line in f.readlines():
-        dir, steps = line.split()
+        direction, steps = line.split()
 
         # grid mapping for the directions
         for _ in range(int(steps)):
-            match dir:
+            match direction:
                 case 'R':
                     head = (head[0] + 1, head[1])
                 case 'L':
