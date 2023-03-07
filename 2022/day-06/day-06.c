@@ -48,7 +48,7 @@ int part_2(char input_file[]) {
     if (fp != NULL) {
         /* read data stream */
         if (!fgets(buffer, MAX_LENGTH - 1, fp)) {
-            fprintf(stderr, "Empty file '%s' \n", input_file);
+            fprintf(stderr, "Empty file '%s'\n", input_file);
             exit(1);
         }
 

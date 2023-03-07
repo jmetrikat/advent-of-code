@@ -20,7 +20,7 @@ int part_1(char input_file[]) {
 
             /* check format and parse the numbers */
             if (sscanf(buffer, "%d-%d,%d-%d", &a1, &a2, &b1, &b2) != 4) {
-                fprintf(stderr, "Incorrect format in line '%s' \n", buffer);
+                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
                 exit(1);
             }
 
@@ -34,7 +34,7 @@ int part_1(char input_file[]) {
 
     /* file not found */
     } else {
-        fprintf(stderr,"Problems opening file '%s'\n", input_file);
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
         exit(1);
     }
 
@@ -55,7 +55,7 @@ int part_2(char input_file[]) {
 
             /* check format and parse the numbers */
             if (sscanf(buffer, "%d-%d,%d-%d", &a1, &a2, &b1, &b2) != 4) {
-                fprintf(stderr, "Incorrect format in line '%s' \n", buffer);
+                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
                 exit(1);
             }
 
@@ -69,7 +69,7 @@ int part_2(char input_file[]) {
 
     /* file not found */
     } else {
-        fprintf(stderr,"Problems opening file '%s'\n", input_file);
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
         exit(1);
     }
 

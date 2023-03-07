@@ -19,14 +19,14 @@ int part_1(char input_file[]) {
 
         while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
-            if (strlen(buffer) < 3) {
-                fprintf(stderr, "Incorrect format in line \'%s\'\n", buffer);
+            if (strlen(buffer) < 3 || strlen(buffer) > 4) {
+                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
                 return 1;
             }
 
             /* check for invalid moves */
             if ((buffer[0] != 'A' && buffer[0] != 'B' && buffer[0] != 'C') || (buffer[2] != 'X' && buffer[2] != 'Y' && buffer[2] != 'Z')) {
-                fprintf(stderr, "Incorrect format: \'%c %c\' Moves should be A, B or C and X, Y or Z\n", buffer[0], buffer[2]);
+                fprintf(stderr, "Incorrect format: '%c %c' Moves should be A, B or C and X, Y or Z\n", buffer[0], buffer[2]);
                 return 1;
             }
 
@@ -65,13 +65,13 @@ int part_2(char input_file[]) {
         while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
             if (strlen(buffer) < 3) {
-                fprintf(stderr, "Incorrect format in line \'%s\'\n", buffer);
+                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
                 return 1;
             }
 
             /* check for invalid moves */
             if ((buffer[0] != 'A' && buffer[0] != 'B' && buffer[0] != 'C') || (buffer[2] != 'X' && buffer[2] != 'Y' && buffer[2] != 'Z')) {
-                fprintf(stderr, "Incorrect format: \'%c %c\' Moves should be A, B or C and X, Y or Z\n", buffer[0], buffer[2]);
+                fprintf(stderr, "Incorrect format: '%c %c' Moves should be A, B or C and X, Y or Z\n", buffer[0], buffer[2]);
                 return 1;
             }
 

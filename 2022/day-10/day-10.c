@@ -19,7 +19,6 @@ void tick() {
     no_cycles++;
 }
 
-
 /* solution part-1 */
 int part_1(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
@@ -50,9 +49,9 @@ int part_1(char input_file[]) {
 
         printf("%d\n", score);
 
-    /* file not found */
+        /* file not found */
     } else {
-        fprintf(stderr,"Problems opening file '%s'\n", input_file);
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
         exit(1);
     }
 
@@ -66,8 +65,7 @@ void tick_to_print() {
     /* if the x value (+1/-1) is in range of the printer, a # is printed */
     if (printer_pos == x - 1 || printer_pos == x || printer_pos == x + 1) {
         printf("#");
-    }
-    else {
+    } else {
         printf(".");
     }
 
@@ -105,7 +103,7 @@ int part_2(char input_file[]) {
 
     /* file not found */
     } else {
-        fprintf(stderr,"Problems opening file '%s'\n", input_file);
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
         exit(1);
     }
 

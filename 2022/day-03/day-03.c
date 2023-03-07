@@ -27,7 +27,7 @@ int part_1(char input_file[]) {
 
             /* check the format */
             if (strlen(buffer) % 2 != 0) {
-                fprintf(stderr, "Incorrect format in line '%s' \n", buffer);
+                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
                 exit(1);
             }
 
@@ -53,7 +53,7 @@ int part_1(char input_file[]) {
 
     /* file not found */
     } else {
-        fprintf(stderr,"Problems opening file '%s'\n", input_file);
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
         exit(1);
     }
 
@@ -120,7 +120,7 @@ int part_2(char input_file[]) {
 
         /* file not found */
     } else {
-        fprintf(stderr,"Problems opening file '%s'\n", input_file);
+        fprintf(stderr, "Problems opening file '%s'\n", input_file);
         exit(1);
     }
 
