@@ -121,7 +121,81 @@ static int part_2(char input_file[]) {
 
     /* file opened successfully */
     if (fp != NULL) {
-        // TODO
+        /* read and check first line */
+        if (!fgets(buffer, MAX_LENGTH - 1, fp)) {
+            fprintf(stderr, "Could not read file '%s'\n", input_file);
+            exit(1);
+        }
+
+        /* initialize array for map */
+        int width = strlen(buffer) - 1;
+        int height = width;
+        char **map = (char **)malloc(sizeof(char *) * height);
+
+        /* read map line by line */
+        for (int i = 0; i < height; i++) {
+            map[i] = (char *)malloc(sizeof(char) * width);
+            for (int j = 0; j < width; j++) {
+                map[i][j] = buffer[j];
+            }
+            /* get the next line and check format */
+            if (!fgets(buffer, MAX_LENGTH - 1, fp) && (i < height - 1)) {
+                fprintf(stderr, "Format error: height does not equal width: %d\n", i);
+                exit(1);
+            }
+        }
+
+        /* calculate score viewing distance */
+        int max_score = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                int score = 1;
+                int dist = 1;
+
+                /* viewing distance to north */
+                for (int k = i - 1; k > 0; k--, dist++) {
+                    if (map[k][j] >= map[i][j]) {
+                        break;
+                    }
+                }
+                score *= dist;
+
+                /* viewing distance to south */
+                dist = 1;
+                for (int k = i + 1; k < height - 1; k++, dist++) {
+                    if (map[k][j] >= map[i][j]) {
+                        break;
+                    }
+                }
+                score *= dist;
+
+                /* viewing distance to west */
+                dist = 1;
+                for (int k = j - 1; k > 0; k--, dist++) {
+                    if (map[i][k] >= map[i][j]) {
+                        break;
+                    }
+                }
+                score *= dist;
+
+                /* viewing distance to east */
+                dist = 1;
+                for (int k = j + 1; k < width - 1; k++, dist++) {
+                    if (map[i][k] >= map[i][j]) {
+                        break;
+                    }
+                }
+                score *= dist;
+                max_score = (max_score > score) ? max_score : score;
+            }
+        }
+
+        printf("%d\n", max_score);
+
+        /* free allocated memory */
+        for (int i = 0; i < width; i++)
+            free(map[i]);
+        free(map);
 
     /* file not found */
     } else {
