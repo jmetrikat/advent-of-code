@@ -3,17 +3,74 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define MAX_LENGTH 256
+#define BASE 5
 
 /* solution part-1 */
 int part_1(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
+    long long decimal_res = 0;
 
     /* file opened successfully */
     if (fp != NULL) {
-        // TODO
+        while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
+            long long decimal_sum = 0;
+
+            /* convert SNAFU to base 10 */
+            for (int pow_val = strlen(buffer) - 2; pow_val >= 0; pow_val--) {
+                switch (buffer[strlen(buffer) - 2 - pow_val]) {
+                    case '-':
+                        decimal_sum += pow(BASE, pow_val) * -1;
+                        break;
+                    case '=':
+                        decimal_sum += pow(BASE, pow_val) * -2;
+                        break;
+                    default:
+                        decimal_sum += pow(BASE, pow_val) * (buffer[strlen(buffer) - 2 - pow_val] - '0');
+                }
+            }
+
+            decimal_res += decimal_sum;
+        }
+
+        /* convert decimal result to base 5 */
+        int base5_res[MAX_LENGTH];
+        int len = 0;
+
+        for (len = 0; decimal_res > 0; len++) {
+            base5_res[len] = decimal_res % BASE;
+            decimal_res = decimal_res / BASE;
+        }
+
+        /* adjust base 5 to SNAFU */
+        int carry = 0;
+        for (int i = 0; i < len; i++) {
+            if ((base5_res[i] + carry) <= 2) {
+                base5_res[i] = base5_res[i] + carry;
+                carry = 0;
+            } else {
+                base5_res[i] = (base5_res[i] + carry) -5;
+                carry = 1;
+            }
+        }
+
+        /* print result in SNAFU */
+        for (int i = len - 1; i >= 0; i--) {
+            switch(base5_res[i]) {
+                case -1:
+                    printf("-");
+                    break;
+                case -2:
+                    printf("=");
+                    break;
+                default:
+                    printf("%d", base5_res[i]);
+            }
+        }
+        printf("\n");
 
     /* file not found */
     } else {
