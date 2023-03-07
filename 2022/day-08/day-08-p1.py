@@ -49,8 +49,8 @@ with open("day-08-input.txt") as f:
     for i in range(len(input) - 1):
         for j in range(len(input[i])):
 
-            # increase counter, if tree is visible
-            if check_north(i, j) or check_south(i, j) or  check_west(i, j) or check_east(i, j):
+            # increase counter if tree is visible
+            if check_north(i, j) or check_south(i, j) or check_west(i, j) or check_east(i, j):
                 visible_cnt += 1
 
 print(visible_cnt)

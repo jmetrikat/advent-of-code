@@ -63,7 +63,7 @@ int part_1(char input_file[]) {
 void tick_to_print() {
     int printer_pos = no_cycles % 40;
 
-    /* if the x value(+1 / -1) is in range of the printer, a #is printed */
+    /* if the x value (+1/-1) is in range of the printer, a # is printed */
     if (printer_pos == x - 1 || printer_pos == x || printer_pos == x + 1) {
         printf("#");
     }
