@@ -16,7 +16,7 @@ int part_1(char input_file[]) {
 
     /* file opened successfully */
     if (fp != NULL) {
-        while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp) != NULL) {
             long long base10_sum = 0;
 
             /* convert SNAFU to base 10 */

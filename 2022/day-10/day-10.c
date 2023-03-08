@@ -32,7 +32,7 @@ int part_1(char input_file[]) {
     /* file opened successfully */
     if (fp != NULL) {
         /* read the opearations and execute them line by line */
-        while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp) != NULL) {
             /* noop takes 1 cycle, addx takes 2 cycles */
             if (!strncmp(buffer, "noop", 4)) {
                 tick();
@@ -86,7 +86,7 @@ int part_2(char input_file[]) {
 
     /* file opened successfully */
     if (fp != NULL) {
-        while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
+        while (fgets(buffer, MAX_LENGTH - 1, fp) != NULL) {
             /* noop takes 1 cycle, addx takes 2 cycles */
             if (!strncmp(buffer, "noop", 4)) {
                 tick_to_print();
