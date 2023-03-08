@@ -57,9 +57,7 @@ with open("day-08-input.txt") as f:
     for i in range(len(input) - 1):
         for j in range(len(input[i])):
             if i != 1 and j != 0 and i != 98 and j != 98:
-
-                score = 1
-                score *= check_north(i, j) * check_south(i, j) * check_west(i, j) * check_east(i, j)
+                score = check_north(i, j) * check_south(i, j) * check_west(i, j) * check_east(i, j)
 
                 # update max score
                 if score > max_score:

@@ -7,7 +7,7 @@
 #define MAX_LENGTH 256
 
 /* solution part-1 */
-static int part_1(char input_file[]) {
+int part_1(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
 
@@ -115,7 +115,7 @@ static int part_1(char input_file[]) {
 }
 
 /* solution part-2 */
-static int part_2(char input_file[]) {
+int part_2(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
 

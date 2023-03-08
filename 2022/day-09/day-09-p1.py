@@ -18,7 +18,7 @@ with open("day-09-input.txt") as f:
     for line in f.readlines():
         direction, steps = line.split()
 
-        # grid mapping for the directions
+        # grid mapping of directions
         for _ in range(int(steps)):
             match direction:
                 case 'R':
