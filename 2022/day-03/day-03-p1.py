@@ -5,7 +5,7 @@
 
 
 # find the common item and calculate its priority
-def compare():
+def compare(first_compartment: str, second_compartment: str):
     global priority
 
     for item_1 in first_compartment:
@@ -13,7 +13,6 @@ def compare():
 
             # common item found
             if item_1 == item_2:
-                print(item_1)
                 if item_1.isupper():
                     priority += ord(item_1) - ord('A') + 27
                     return
@@ -24,11 +23,10 @@ def compare():
 
 priority = 0
 
-# separate the compartments by splitting the line in half and compare their items
+# separate the compartments by splitting the line in half (floor division) and compare their items
 with open("input.txt") as f:
     for line in f:
-        first_compartment, second_compartment = line[:len(
-            line)//2], line[len(line)//2:]
-        compare()
+        first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
+        compare(first_compartment, second_compartment)
 
-        print(priority)
+print(priority)
