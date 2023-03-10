@@ -5,7 +5,7 @@
 
 import numpy as np
 
-with open("day-09-input.txt") as f:
+with open("input.txt") as f:
     # define amount of knots and store their position in array
     NO_KNOTS = 10
     knots = []
@@ -44,7 +44,8 @@ with open("day-09-input.txt") as f:
 
                 # ... otherwise adjust knot #k+1 and add position of last knot (index: knots[-1]) to visited positions
                 else:
-                    knots[k + 1] = (knots[k + 1][0] + np.sign(diff_x), knots[k + 1][1] + np.sign(diff_y))
+                    knots[k + 1] = (knots[k + 1][0] + np.sign(diff_x),
+                                    knots[k + 1][1] + np.sign(diff_y))
                     tail_pos_visited.add(knots[-1])
 
 print(len(tail_pos_visited))

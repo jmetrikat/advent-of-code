@@ -25,9 +25,10 @@ def compare():
 priority = 0
 
 # separate the compartments by splitting the line in half and compare their items
-with open("day-03-input.txt") as f:
+with open("input.txt") as f:
     for line in f:
-        first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
+        first_compartment, second_compartment = line[:len(
+            line)//2], line[len(line)//2:]
         compare()
 
         print(priority)

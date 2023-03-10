@@ -41,7 +41,7 @@ def check_east(i, j):
 
 
 # main entry point
-with open("day-08-input.txt") as f:
+with open("input.txt") as f:
     visible_cnt = 0
     input = f.read().split("\n")
 

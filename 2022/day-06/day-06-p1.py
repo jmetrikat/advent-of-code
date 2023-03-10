@@ -7,7 +7,7 @@
 MARKER_SIZE = 4
 
 # compare consecutive four characters and print starting position, if marker detected
-with open("day-06-input.txt") as f:
+with open("input.txt") as f:
     input = f.read()
 
     for i in range(len(input)):

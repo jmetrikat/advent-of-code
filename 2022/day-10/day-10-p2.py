@@ -23,7 +23,7 @@ def tick():
     return
 
 
-with open("day-10-input.txt") as f:
+with open("input.txt") as f:
     # store number of cycles, value in register x and final score
     no_cycles = 0
     x = 1

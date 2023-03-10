@@ -19,7 +19,7 @@ MARKER_SIZE = 14
 input = []
 
 # compare consecutive 14 characters and print starting position, if marker detected
-with open("day-06-input.txt") as f:
+with open("input.txt") as f:
     input = f.read()
 
     for i in range((len(input) - MARKER_SIZE)):

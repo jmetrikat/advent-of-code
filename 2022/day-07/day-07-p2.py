@@ -9,7 +9,7 @@ dirs = {"/root": 0}
 # store current path
 path = "/root"
 
-with open("day-07-input.txt") as f:
+with open("input.txt") as f:
     for cmd in f.readlines():
         if cmd[0] == "$":
 

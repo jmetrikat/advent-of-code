@@ -5,7 +5,7 @@
 
 import numpy as np
 
-with open("day-09-input.txt") as f:
+with open("input.txt") as f:
     # represent the position of head and tail as a tuple
     head = (0, 0)
     tail = (0, 0)

@@ -8,7 +8,7 @@ import re
 
 # initialize the program and return stacks as array and procedures as lines
 def init():
-    with open("day-05-input.txt", "r") as f:
+    with open("input.txt", "r") as f:
         crates, procedures = f.read().split("\n\n")
         stacks = create_stacks(crates)
         return stacks, procedures.split("\n")
@@ -34,7 +34,8 @@ def create_stacks(crates):
 
 # for every instruction find the 3 important numbers: #, from, to
 def parse_instructions(instruction):
-    crates_to_move, to_stack, from_stack = map(int, re.findall(r"[0-9]*[0-9]+", instruction))
+    crates_to_move, to_stack, from_stack = map(
+        int, re.findall(r"[0-9]*[0-9]+", instruction))
     return crates_to_move, to_stack-1, from_stack-1
 
 

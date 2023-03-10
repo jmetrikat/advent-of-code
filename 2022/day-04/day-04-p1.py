@@ -5,9 +5,9 @@
 
 import re
 
-with open("day-04-input.txt", "r") as f:
+with open("input.txt", "r") as f:
     result = 0
-    
+
     for line in f.read().split("\n"):
         if line != '':
             l1, l2, r1, r2 = [int(x) for x in re.split('[,-]', line)]

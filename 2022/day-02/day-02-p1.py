@@ -5,7 +5,7 @@
 
 score = 0
 
-with open("day-02-input.txt") as f:
+with open("input.txt") as f:
     for line in f:
         if line == "A X\n":
             score = score + 4

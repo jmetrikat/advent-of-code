@@ -5,7 +5,7 @@
 
 import re
 
-with open("day-04-input.txt", "r") as f:
+with open("input.txt", "r") as f:
     result = 0
 
     for line in f.read().split("\n"):

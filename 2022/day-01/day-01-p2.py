@@ -6,7 +6,7 @@
 calorie_sum = 0
 blocks = []
 
-with open('day-01-input.txt') as f:
+with open('input.txt') as f:
     for line in f.readlines():
         if line == "\n":
             blocks.append(calorie_sum)

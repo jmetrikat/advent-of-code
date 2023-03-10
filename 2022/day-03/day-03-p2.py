@@ -27,7 +27,7 @@ counter = 0
 groupOfThree = []
 
 # separate the elfs into groups of three and find the common item
-with open("day-03-input.txt") as f:
+with open("input.txt") as f:
     for line in f:
         counter = counter + 1
         groupOfThree.append(line)
