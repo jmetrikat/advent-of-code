@@ -62,7 +62,7 @@ def part_2():
         if procedure.strip():
             crates_to_move, from_stack, to_stack = parse_instructions(procedure)
 
-            # move multiple crates at once
+            # move crates at once
             stacks[to_stack].extend(stacks[from_stack][-crates_to_move:])
             stacks[from_stack] = stacks[from_stack][:-crates_to_move]
 

@@ -67,6 +67,7 @@ def part_1():
 # solution part 2
 def part_2():
     dirs = check_directories()
+
     # total disk space available to the filesystem is 70000000
     free_space = 70000000 - dirs["/root"]
 
@@ -80,8 +81,7 @@ def part_2():
             candidate_dirs.append(dirs[dir])
 
     # choose to delete the smallest directory that's big enough
-    smallest_dir = min(candidate_dirs)
-    print(smallest_dir)
+    print(min(candidate_dirs))
 
 
 # main entry point
