@@ -40,7 +40,6 @@ int part_1(char input_file[]) {
             }
         }
 
-
         /* use dijikstra algorithm */
         int no_nodes = row * col;
         int *distance = (int *)malloc(sizeof(int) * no_nodes);      /* distance from start to node; distance[end[0] + end[1] * col] has the solution */
@@ -51,22 +50,22 @@ int part_1(char input_file[]) {
             cost[i] = (int *)malloc(sizeof(int) * no_nodes);
         }
 
-        /* initialize distance matrix */
+        /* initialize cost matrix */
         for (int src = 0; src < no_nodes; src++) {
             for (int dest = 0; dest < no_nodes; dest++) {
                 if (src == dest) {
-                    /* distance from node to itself is 0 */
+                    /* cost to get from node to itself is 0 */
                     cost[src][dest] = 0;
                 } else {
-                    /* distance of all other nodes is "infinity" */
+                    /* cost to get to any other nodes is "infinity" */
                     cost[src][dest] = no_nodes;
 
-                    /* distance of all adjacent and by elevation recheable nodes is 1 */
                     int src_x = src % col;
                     int src_y = src / col;
                     int dest_x = dest % col;
                     int dest_y = dest / col;
 
+                    /* cost to get to adjacent and by elevation reachable nodes is 1 */
                     if ((abs(src_x - dest_x) == 1 && src_y == dest_y) || (abs(src_y - dest_y) == 1 && src_x == dest_x)) {
                         if (map[dest_y][dest_x] - map[src_y][src_x] <= 1) {
                             cost[src][dest] = 1;
@@ -83,7 +82,7 @@ int part_1(char input_file[]) {
         }
         visited[start[0] + start[1] * col] = 1;
 
-        /* calculate paths from start to all other nodes */
+        /* find shortest path */
         for (int i = 0; i < no_nodes; i++) {
             int min_distance = no_nodes;
             int next_node_idx = 0;
@@ -101,7 +100,7 @@ int part_1(char input_file[]) {
 
             /* update distance of all adjacent nodes */
             for (int j = 0; j < no_nodes; j++) {
-                if (visited[j] == 0 && distance[j] > min_distance + cost[next_node_idx][j]) {
+                if (visited[j] == 0 && min_distance + cost[next_node_idx][j] < distance[j]) {
                     distance[j] = min_distance + cost[next_node_idx][j];
                 }
             }
@@ -167,24 +166,24 @@ int part_2(char input_file[]) {
             cost[i] = (int *)malloc(sizeof(int) * no_nodes);
         }
 
-        /* initialize distance matrix */
+        /* initialize cost matrix */
         for (int src = 0; src < no_nodes; src++) {
             for (int dest = 0; dest < no_nodes; dest++) {
                 if (src == dest) {
-                    /* distance from node to itself is 0 */
+                    /* cost to get from node to itself is 0 */
                     cost[src][dest] = 0;
                 } else {
-                    /* distance of all other nodes is "infinity" */
+                    /* cost to get to any other nodes is "infinity" */
                     cost[src][dest] = no_nodes;
 
-                    /* distance of all adjacent and by elevation recheable nodes is 1 */
                     int src_x = src % col;
                     int src_y = src / col;
                     int dest_x = dest % col;
                     int dest_y = dest / col;
 
+                    /* cost to get to adjacent and by elevation reachable nodes is 1 */
                     if ((abs(src_x - dest_x) == 1 && src_y == dest_y) || (abs(src_y - dest_y) == 1 && src_x == dest_x)) {
-                        if (map[dest_y][dest_x] - map[src_y][src_x] <= 1) {
+                        if (map[src_y][src_x] - map[dest_y][dest_x] <= 1) {
                             cost[src][dest] = 1;
                         }
                     }
@@ -192,46 +191,45 @@ int part_2(char input_file[]) {
             }
         }
 
-        /* check all start positions for shortest path */
+
+
+        /* initialize distance and visited */
+        for (int i = 0; i < no_nodes; i++) {
+            distance[i] = cost[end[0] + end[1] * col][i];
+            visited[i] = 0;
+        }
+        visited[end[0] + end[1] * col] = 1;
+
+        /* calculate paths from start to all other nodes */
+        for (int i = 0; i < no_nodes; i++) {
+            int min_distance = no_nodes;
+            int next_node_idx = 0;
+
+            /* find node with minimum distance */
+            for (int j = 0; j < no_nodes; j++) {
+                if (visited[j] == 0 && distance[j] < min_distance) {
+                    min_distance = distance[j];
+                    next_node_idx = j;
+                }
+            }
+
+            /* mark node as visited */
+            visited[next_node_idx] = 1;
+
+            /* update distance of all adjacent nodes */
+            for (int j = 0; j < no_nodes; j++) {
+                if (visited[j] == 0 && min_distance + cost[next_node_idx][j] < distance[j]) {
+                    distance[j] = min_distance + cost[next_node_idx][j];
+                }
+            }
+        }
+
+        /* find starting point with shortest path */
         int fewest_steps = no_nodes;
-
-        for (start[0] = 0; start[0] < row; start[0]++) {
-            for (start[1] = 0; start[1] < col; start[1]++) {
-                if (map[start[1]][start[0]] == 'a') {
-
-                    /* initialize distance and visited */
-                    for (int i = 0; i < no_nodes; i++) {
-                        distance[i] = cost[start[0] + start[1] * col][i];
-                        visited[i] = 0;
-                    }
-                    visited[start[0] + start[1] * col] = 1;
-
-                    /* calculate paths from start to all other nodes */
-                    for (int i = 0; i < no_nodes; i++) {
-                        int min_distance = no_nodes;
-                        int next_node_idx = 0;
-
-                        /* find node with minimum distance */
-                        for (int j = 0; j < no_nodes; j++) {
-                            if (visited[j] == 0 && distance[j] < min_distance) {
-                                min_distance = distance[j];
-                                next_node_idx = j;
-                            }
-                        }
-
-                        /* mark node as visited */
-                        visited[next_node_idx] = 1;
-
-                        /* update distance of all adjacent nodes */
-                        for (int j = 0; j < no_nodes; j++) {
-                            if (visited[j] == 0 && distance[j] > min_distance + cost[next_node_idx][j]) {
-                                distance[j] = min_distance + cost[next_node_idx][j];
-                            }
-                        }
-                    }
-
-                    /* update fewest steps */
-                    fewest_steps = fewest_steps >  distance[end[0] + end[1] * col] ? distance[end[0] + end[1] * col] : fewest_steps;
+        for (int start_x = 0; start_x < row; start_x++) {
+            for (int start_y = 0; start_y < col; start_y++) {
+                if (map[start_x][start_y] == 'a') {
+                    fewest_steps = distance[start_y + start_x * col] < fewest_steps ? distance[start_y + start_x * col] : fewest_steps;
                 }
             }
         }
