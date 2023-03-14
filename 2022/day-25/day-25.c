@@ -52,7 +52,7 @@ int part_1(char input_file[]) {
                 base5_res[i] = base5_res[i] + carry;
                 carry = 0;
             } else {
-                base5_res[i] = (base5_res[i] + carry) - 5;
+                base5_res[i] = base5_res[i] + carry - BASE;
                 carry = 1;
             }
         }

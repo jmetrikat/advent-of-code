@@ -32,11 +32,11 @@ def check_directories():
 
                     # change to dir_name
                     else:
-                        dir_name = cmd[5:len(cmd)-1]
-                        path = path + "/" + dir_name
+                        dir_name = cmd[5:len(cmd) - 1]
+                        path += "/" + dir_name
                         dirs.update({path: 0})
 
-            #  nothing to do
+            # nothing to do
             elif cmd[0:3] == "dir":
                 pass
 
