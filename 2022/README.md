@@ -26,4 +26,4 @@
 | 22  | [Monkey Map](./day-22/README.md) | [&#x231B;](./day-22/day-22.c) | [&#x231B;](./day-22/day-22.py) |
 | 23  | [Unstable Diffusion](./day-23/README.md) | [&#x231B;](./day-23/day-23.c) | [&#x231B;](./day-23/day-23.py) |
 | 24  | [Blizzard Basin](./day-24/README.md) | [&#x231B;](./day-24/day-24.c) | [&#x231B;](./day-24/day-24.py) |
-| 25  | [Full of Hot Air](./day-25/README.md) | [&#10003;](./day-25/day-25.c) | [&#x231B;](./day-25/day-25.py) |
+| 25  | [Full of Hot Air](./day-25/README.md) | [&#10003;](./day-25/day-25.c) | [&#10003;](./day-25/day-25.py) |
