@@ -1,4 +1,4 @@
-# Progress Tracker
+# 🗓️ 2022: Progress Tracker
 
 | Day | Task | C | Python |
 | --- | ----- | - | ------ |
@@ -15,7 +15,7 @@
 | 11  | [Monkey in the Middle](./day-11/README.md) | [&#x231B;](./day-11/day-11.c) | [&#x231B;](./day-11/day-11.py) |
 | 12  | [Hill Climbing Algorithm](./day-12/README.md) | [&#10003;](./day-12/day-12.c) | [&#10003;](./day-12/day-12.py) |
 | 13  | [Distress Signal](./day-13/README.md) | [&#x231B;](./day-13/day-13.c) | [&#x231B;](./day-13/day-13.py) |
-| 14  | [Regolith Reservoir](./day-14/README.md) | [&#x231B;](./day-14/day-14.c) | [&#x231B;](./day-14/day-14.py) |
+| 14  | [Regolith Reservoir](./day-14/README.md) | [&#10003;](./day-14/day-14.c) | [&#x231B;](./day-14/day-14.py) |
 | 15  | [Beacon Exclusion Zone](./day-15/README.md) | [&#x231B;](./day-15/day-15.c) | [&#x231B;](./day-15/day-15.py) |
 | 16  | [Proboscidea Volcanium](./day-16/README.md) | [&#x231B;](./day-16/day-16.c) | [&#x231B;](./day-16/day-16.py) |
 | 17  | [Pyroclastic Flow](./day-17/README.md) | [&#x231B;](./day-17/day-17.c) | [&#x231B;](./day-17/day-17.py) |
