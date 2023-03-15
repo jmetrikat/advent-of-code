@@ -12,7 +12,7 @@ score = 0
 
 
 # increment the cycle counter and update the score for given cycles
-def tick():
+def tick() -> None:
     global no_cycles, x, score
     if no_cycles == 20 or no_cycles == 60 or no_cycles == 100 or no_cycles == 140 or no_cycles == 180 or no_cycles == 220:
         score += no_cycles * x
@@ -21,7 +21,7 @@ def tick():
 
 
 # increment the cycle counter and print a pixel
-def tick_and_print():
+def tick_and_print() -> None:
     global no_cycles, x
     printer_pos = no_cycles % 40
 

@@ -6,7 +6,7 @@
 import sys
 
 
-def check_directories():
+def check_directories() -> dict:
     # use dictionary to store directories and size
     dirs = {"/root": 0}
 

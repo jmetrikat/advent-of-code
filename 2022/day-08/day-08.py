@@ -7,7 +7,7 @@ import sys
 
 
 # check if tree is visible to north
-def visible_to_north(i, j, input):
+def visible_to_north(i: int, j: int, input: list) -> int:
     for k in range(0, i):
         if input[k][j] >= input[i][j]:
             return 0
@@ -16,7 +16,7 @@ def visible_to_north(i, j, input):
 
 
 # check if tree is visible to south
-def visible_to_south(i, j, input):
+def visible_to_south(i: int, j: int, input: list) -> int:
     for k in range(i+1, len(input)-1):
         if input[k][j] >= input[i][j]:
             return 0
@@ -25,7 +25,7 @@ def visible_to_south(i, j, input):
 
 
 # check if tree is visible to west
-def visible_to_west(i, j, input):
+def visible_to_west(i: int, j: int, input: list) -> int:
     for k in range(0, j):
         if input[i][k] >= input[i][j]:
             return 0
@@ -34,7 +34,7 @@ def visible_to_west(i, j, input):
 
 
 # check if tree is visible to east
-def visible_to_east(i, j, input):
+def visible_to_east(i: int, j: int, input: list) -> int:
     for k in range(j+1, len(input[i])):
         if input[i][k] >= input[i][j]:
             return 0
@@ -43,7 +43,7 @@ def visible_to_east(i, j, input):
 
 
 # viewing distance to the north?
-def distance_to_north(i, j, input):
+def distance_to_north(i: int, j: int, input: list) -> int:
     distance = 0
     for k in reversed(range(0, i)):
         distance += 1
@@ -54,7 +54,7 @@ def distance_to_north(i, j, input):
 
 
 # viewing distance to the south?
-def distance_to_south(i, j, input):
+def distance_to_south(i: int, j: int, input: list) -> int:
     distance = 0
     for k in range(i + 1, len(input) - 1):
         distance += 1
@@ -65,7 +65,7 @@ def distance_to_south(i, j, input):
 
 
 # viewing distance to the west?
-def distance_to_west(i, j, input):
+def distance_to_west(i: int, j: int, input: list) -> int:
     distance = 0
     for k in reversed(range(0, j)):
         distance += 1
@@ -76,7 +76,7 @@ def distance_to_west(i, j, input):
 
 
 # viewing distance to the east?
-def distance_to_east(i, j, input):
+def distance_to_east(i: int, j: int, input: list) -> int:
     distance = 0
     for k in range(j + 1, len(input[i])):
         distance += 1

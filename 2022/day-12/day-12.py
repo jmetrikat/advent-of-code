@@ -6,7 +6,7 @@
 import sys
 
 
-def get_shortest_path(start, end, map):
+def get_shortest_path(start: tuple, end: tuple, map: list) -> int:
     rows = len(map)
     cols = len(map[0])
     no_nodes = rows * cols

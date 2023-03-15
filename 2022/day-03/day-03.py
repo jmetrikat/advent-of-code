@@ -5,43 +5,36 @@
 
 import sys
 
-priority = 0
-counter = 0
-groupOfThree = []
-
 
 # find the common item and calculate its priority
-def compare_items(first_compartment: str, second_compartment: str):
-    global priority
-
+def compare_items(first_compartment: str, second_compartment: str) -> int:
     for item_1 in first_compartment:
         for item_2 in second_compartment:
 
             # common item found
             if item_1 == item_2:
                 if item_1.isupper():
-                    priority += ord(item_1) - ord('A') + 27
-                    return
+                    return ord(item_1) - ord('A') + 27
+
                 else:
-                    priority += ord(item_1) - ord('a') + 1
-                    return
+                    return ord(item_1) - ord('a') + 1
 
 
 # solution part 1
 def part_1():
+    priority = 0
+
     # separate the compartments by splitting the line in half (floor division) and compare their items
     with open("input.txt") as f:
         for line in f:
             first_compartment, second_compartment = line[:len(line)//2], line[len(line)//2:]
-            compare_items(first_compartment, second_compartment)
+            priority += compare_items(first_compartment, second_compartment)
 
     print(priority)
 
 
 # find the common item and calculate its priority
-def find_common(lines: list):
-    global priority
-
+def find_common(lines: list) -> int:
     for item_1 in lines[0]:
         for item_2 in lines[1]:
             for item_3 in lines[2]:
@@ -49,16 +42,17 @@ def find_common(lines: list):
                 # common item found
                 if item_1 == item_2 and item_2 == item_3:
                     if item_1.isupper():
-                        priority += ord(item_1) - ord('A') + 27
-                        return
+                        return ord(item_1) - ord('A') + 27
+
                     else:
-                        priority += ord(item_1) - ord('a') + 1
-                        return
+                        return ord(item_1) - ord('a') + 1
 
 
 # solution part 2
 def part_2():
-    global counter
+    priority = 0
+    counter = 0
+    groupOfThree = []
 
     # separate the elfs into groups of three and find the common item
     with open("input.txt") as f:
@@ -67,7 +61,7 @@ def part_2():
             groupOfThree.append(line)
 
             if counter % 3 == 0:
-                find_common(groupOfThree)
+                priority += find_common(groupOfThree)
                 groupOfThree.clear()
 
     print(priority)

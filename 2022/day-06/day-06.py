@@ -7,7 +7,7 @@ import sys
 
 
 # check if all 14 characters are different
-def is_marker(i, marker_size, input):
+def is_marker(i: int, marker_size: int, input: str) -> int:
     for j in range(0, marker_size - 1):
         for k in range(1, marker_size):
             if input[i + j] == input[i + k] and (i + j) != (i + k):

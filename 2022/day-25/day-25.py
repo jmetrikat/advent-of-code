@@ -8,7 +8,7 @@ base = 5
 
 
 # convert snafu to base10
-def snafu_to_base10(snafu):
+def snafu_to_base10(snafu: str) -> int:
     base10_sum = 0
 
     for i, digit in enumerate(reversed(snafu)):
@@ -24,7 +24,7 @@ def snafu_to_base10(snafu):
 
 
 # convert base10 to base5
-def base10_to_base5(base10):
+def base10_to_base5(base10: int) -> str:
     base5 = ""
 
     while base10 > 0:
@@ -35,7 +35,7 @@ def base10_to_base5(base10):
 
 
 # adjust base5 to snafu
-def base5_to_snafu(base5):
+def base5_to_snafu(base5: str) -> str:
     snafu = ""
     carry = 0
 
@@ -71,7 +71,6 @@ def part_1():
 
     # print snafu backwards
     print(snafu_res[::-1])
-    f.close()
 
 
 # solution part 2
