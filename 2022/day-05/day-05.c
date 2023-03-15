@@ -49,7 +49,10 @@ int part_1(char input_file[]) {
         /* move one crate at a time */
         while (fgets(buffer, MAX_LENGTH, fp)) {
             int crates_to_move, dest, src;
-            sscanf(buffer, "move %d from %d to %d", &crates_to_move, &src, &dest);
+            if (sscanf(buffer, "move %d from %d to %d", &crates_to_move, &src, &dest) != 3) {
+                fprintf(stderr, "Error parsing line '%.*s'\n", (int) strlen(buffer), buffer);
+                exit(1);
+            }
 
             for (int i = 0; i < crates_to_move; i++) {
                 stacks[dest][stack_height[dest]++] = stacks[src][--stack_height[src]];

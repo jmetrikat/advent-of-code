@@ -27,7 +27,7 @@ int part_1(char input_file[]) {
 
             /* check the format */
             if (strlen(buffer) % 2 != 0) {
-                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
+                fprintf(stderr, "Incorrect format in line '%.*s'\n", (int) strlen(buffer), buffer);
                 exit(1);
             }
 

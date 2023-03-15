@@ -20,7 +20,7 @@ int part_1(char input_file[]) {
         while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
             if (strlen(buffer) < 3 || strlen(buffer) > 4) {
-                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
+                fprintf(stderr, "Incorrect format in line '%.*s'\n", (int) strlen(buffer) - 1, buffer);
                 return 1;
             }
 
@@ -65,7 +65,7 @@ int part_2(char input_file[]) {
         while (fgets(buffer, MAX_LENGTH - 1, fp)) {
             /* check the format */
             if (strlen(buffer) < 3) {
-                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
+                fprintf(stderr, "Incorrect format in line '%.*s'\n", (int) strlen(buffer) - 1, buffer);
                 return 1;
             }
 

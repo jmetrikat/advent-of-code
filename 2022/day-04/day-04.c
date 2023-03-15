@@ -20,7 +20,7 @@ int part_1(char input_file[]) {
 
             /* check format and parse the numbers */
             if (sscanf(buffer, "%d-%d,%d-%d", &a1, &a2, &b1, &b2) != 4) {
-                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
+                fprintf(stderr, "Incorrect format in line '%.*s'\n", (int) strlen(buffer) - 1, buffer);
                 exit(1);
             }
 
@@ -55,7 +55,7 @@ int part_2(char input_file[]) {
 
             /* check format and parse the numbers */
             if (sscanf(buffer, "%d-%d,%d-%d", &a1, &a2, &b1, &b2) != 4) {
-                fprintf(stderr, "Incorrect format in line '%s'\n", buffer);
+                fprintf(stderr, "Incorrect format in line '%.*s'\n", (int) strlen(buffer) - 1, buffer);
                 exit(1);
             }
 
