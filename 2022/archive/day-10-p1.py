@@ -15,7 +15,7 @@ def tick():
 
 with open("input.txt") as f:
     # store number of cycles, value in register x and final score
-    no_cycles = 0
+    no_cycles = 1
     x = 1
     score = 0
 

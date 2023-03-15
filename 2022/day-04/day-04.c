@@ -25,7 +25,7 @@ int part_1(char input_file[]) {
             }
 
             /* check if section assinments pairs fully contain each other */
-            if (a1 <= b1 && a2 >= b2 || b1 <= a1 && b2 >= a2) {
+            if ((a1 <= b1 && a2 >= b2) || (b1 <= a1 && b2 >= a2)) {
                 fully_contained++;
             }
         }

@@ -42,6 +42,7 @@ def tick_and_print() -> None:
 # solution part 1
 def part_1():
     global no_cycles, x, score
+    no_cycles = 1
 
     with open("input.txt") as f:
         # noop takes 1 cycle, addx takes 2 cycles

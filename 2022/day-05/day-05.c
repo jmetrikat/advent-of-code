@@ -5,8 +5,8 @@
 #include <string.h>
 
 #define MAX_LENGTH 256
-#define MAX_STACKS 32
-#define MAX_HEIGHT 32
+#define MAX_STACKS 64
+#define MAX_HEIGHT 64
 
 /* solution part-1 */
 int part_1(char input_file[]) {
@@ -17,7 +17,7 @@ int part_1(char input_file[]) {
     int no_stacks = 0;
     int stacks[MAX_STACKS][MAX_HEIGHT];
     int stack_height[MAX_STACKS];
-    for (int i = 0; i <= MAX_STACKS; i++) stack_height[i] = 0;
+    for (int i = 0; i < MAX_STACKS; i++) stack_height[i] = 0;
 
     /* file opened successfully */
     if (fp != NULL) {
@@ -83,7 +83,7 @@ int part_2(char input_file[]) {
     int no_stacks = 0;
     int stacks[MAX_STACKS][MAX_HEIGHT];
     int stack_height[MAX_STACKS];
-    for (int i = 0; i <= MAX_STACKS; i++) stack_height[i] = 0;
+    for (int i = 0; i < MAX_STACKS; i++) stack_height[i] = 0;
 
     /* file opened successfully */
     if (fp != NULL) {

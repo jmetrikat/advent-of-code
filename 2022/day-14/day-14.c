@@ -15,9 +15,8 @@ typedef enum { AIR,
                SAND } cave_materials;
 
 /* read cave map from input file */
-cave_materials **get_map(FILE *fp, int part) {
+cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
     char buffer[MAX_LENGTH];
-    int highest_y_coordinate = 0;
 
     /* allocate memory for cave_map */
     cave_materials **cave_map = (cave_materials **) malloc(sizeof(cave_materials *) * HEIGHT);
@@ -70,7 +69,9 @@ cave_materials **get_map(FILE *fp, int part) {
                 }
 
                 /* update highest_y_coordinate */
-                highest_y_coordinate = y > highest_y_coordinate ? y : highest_y_coordinate;
+                if (highest_y_coordinate != NULL) {
+                    *highest_y_coordinate = y > *highest_y_coordinate ? y : *highest_y_coordinate;
+                }
             }
 
             /* move pointer to next pair of coordinates */
@@ -79,13 +80,6 @@ cave_materials **get_map(FILE *fp, int part) {
 
             prev_x = x;
             prev_y = y;
-        }
-    }
-
-    /* add infinite horizontal wall at the bottom of the cave */
-    if (part == 2) {
-        for (int i = 0; i < WIDTH; i++) {
-            cave_map[i][highest_y_coordinate + 2] = WALL;
         }
     }
 
@@ -127,7 +121,7 @@ int part_1(char input_file[]) {
 
     /* file opened successfully */
     if (fp != NULL) {
-        cave_materials **cave_map = get_map(fp, 1);
+        cave_materials **cave_map = get_map(fp, NULL);
 
         /* pour sand and count units that don't fall into the abyss */
         int result = 0;
@@ -158,7 +152,13 @@ int part_2(char input_file[]) {
 
     /* file opened successfully */
     if (fp != NULL) {
-        cave_materials **cave_map = get_map(fp, 2);
+        int highest_y_coordinate = 0;
+        cave_materials **cave_map = get_map(fp, &highest_y_coordinate);
+
+        /* add infinite horizontal wall at the bottom of the cave */
+        for (int i = 0; i < WIDTH; i++) {
+            cave_map[i][highest_y_coordinate + 2] = WALL;
+        }
 
         /* pour sand and count units that don't fall into the abyss */
         int result = 0;
