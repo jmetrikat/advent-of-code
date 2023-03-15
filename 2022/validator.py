@@ -37,11 +37,21 @@ EXPECTED_OUTPUTS = {
 
 
 # run part 1 and part 2 of each day
-def run_solution(day, part):
+def run_python_solution(day, part):
     try:
         os.chdir(f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}")
-        output = subprocess.check_output(
-            ["/opt/homebrew/bin/python3.11", f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/day-{day[-2:]}.py", f"-p{part}"], stderr=subprocess.STDOUT)
+        output = subprocess.check_output(["/opt/homebrew/bin/python3.11", f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/day-{day[-2:]}.py", f"-p{part}"], stderr=subprocess.STDOUT)
+        return output.strip().decode("utf-8")
+    except subprocess.CalledProcessError as e:
+        print(f"Error running day {day} part {part}:")
+        print(e.output.decode("utf-8"))
+        return None
+
+
+# run part 1 and part 2 of each day using C
+def run_c_solution(day, part):
+    try:
+        output = subprocess.check_output([f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/day-{day[-2:]}", f"-p{part}", f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/input.txt"], stderr=subprocess.STDOUT)
         return output.strip().decode("utf-8")
     except subprocess.CalledProcessError as e:
         print(f"Error running day {day} part {part}:")
@@ -50,14 +60,19 @@ def run_solution(day, part):
 
 
 # validate each day
-def validate_solution(day):
+def validate_solution(day, choice):
     expected_output = EXPECTED_OUTPUTS[day]
     if expected_output == ("", ""):
         print(f"Day-{day[-2:]} is still missing.")
         return
 
-    output_part_1 = run_solution(day, 1)
-    output_part_2 = run_solution(day, 2)
+    if choice == "1":
+        output_part_1 = run_c_solution(day, 1)
+        output_part_2 = run_c_solution(day, 2)
+    elif choice == "2":
+        output_part_1 = run_python_solution(day, 1)
+        output_part_2 = run_python_solution(day, 2)
+
     if output_part_1 == expected_output[0] and output_part_2 == expected_output[1]:
         print(f"Day-{day[-2:]} is correct!")
     else:
@@ -68,7 +83,32 @@ def validate_solution(day):
             print(f" Part 2 output: expected '{expected_output[1]}', got '{output_part_2}'")
 
 
-# run day 1 to day 25
-for i in range(1, 26):
-    day = f"day-{i:02}"
-    validate_solution(day)
+
+
+# main entry point
+# ask user to choose between c and python
+print("Choose a language:")
+print(" 1) C")
+print(" 2) Python")
+choice = input("Your choice: ")
+
+# run c solutions
+if choice == "1":
+    os.chdir("/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022")
+    subprocess.run(["make", "clean"], check=True)
+    subprocess.run(["make", "all"], check=True, stderr=subprocess.DEVNULL)
+
+    for i in range(1, 26):
+        day = f"day-{i:02}"
+        validate_solution(day, "1")
+
+    subprocess.run(["make", "clean"], check=True)
+
+# run python solutions
+elif choice == "2":
+    for i in range(1, 26):
+        day = f"day-{i:02}"
+        validate_solution(day, "2")
+else:
+    print("Invalid choice")
+    exit(1)
