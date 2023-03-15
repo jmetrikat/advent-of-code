@@ -22,11 +22,11 @@ int part_1(char input_file[]) {
         /* initialize array for map */
         int width = strlen(buffer) - 1;
         int height = width;
-        char **map = (char **)malloc(sizeof(char *) * height);
+        char **map = (char **) malloc(sizeof(char *) * height);
 
         /* read map line by line */
         for (int i = 0; i < height; i++) {
-            map[i] = (char *)malloc(sizeof(char) * width);
+            map[i] = (char *) malloc(sizeof(char) * width);
             for (int j = 0; j < width; j++) {
                 map[i][j] = buffer[j];
             }
@@ -130,11 +130,11 @@ int part_2(char input_file[]) {
         /* initialize array for map */
         int width = strlen(buffer) - 1;
         int height = width;
-        char **map = (char **)malloc(sizeof(char *) * height);
+        char **map = (char **) malloc(sizeof(char *) * height);
 
         /* read map line by line */
         for (int i = 0; i < height; i++) {
-            map[i] = (char *)malloc(sizeof(char) * width);
+            map[i] = (char *) malloc(sizeof(char) * width);
             for (int j = 0; j < width; j++) {
                 map[i][j] = buffer[j];
             }

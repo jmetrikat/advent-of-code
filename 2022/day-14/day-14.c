@@ -20,9 +20,9 @@ cave_materials **get_map(FILE *fp, int part) {
     int highest_y_coordinate = 0;
 
     /* allocate memory for cave_map */
-    cave_materials **cave_map = (cave_materials **)malloc(sizeof(cave_materials *) * HEIGHT);
+    cave_materials **cave_map = (cave_materials **) malloc(sizeof(cave_materials *) * HEIGHT);
     for (int i = 0; i < HEIGHT; i++) {
-        cave_map[i] = (cave_materials *)malloc(sizeof(cave_materials) * WIDTH);
+        cave_map[i] = (cave_materials *) malloc(sizeof(cave_materials) * WIDTH);
         for (int j = 0; j < WIDTH; j++) {
             cave_map[i][j] = AIR;
         }

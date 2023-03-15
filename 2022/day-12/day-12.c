@@ -42,12 +42,12 @@ int part_1(char input_file[]) {
 
         /* use dijikstra algorithm */
         int no_nodes = row * col;
-        int *distance = (int *)malloc(sizeof(int) * no_nodes);      /* distance from start to node; distance[end[0] + end[1] * col] has the solution */
-        int *visited = (int *)malloc(sizeof(int) * no_nodes);       /* record of visited nodes; 1 = visited, 0 = not visited */
-        int **cost = (int **)malloc(sizeof(int *) * no_nodes);      /* altitude difference of nodes; 1 = reachable, ∞ = not reachable */
+        int *distance = (int *) malloc(sizeof(int) * no_nodes);      /* distance from start to node; distance[end[0] + end[1] * col] has the solution */
+        int *visited = (int *) malloc(sizeof(int) * no_nodes);       /* record of visited nodes; 1 = visited, 0 = not visited */
+        int **cost = (int **) malloc(sizeof(int *) * no_nodes);      /* altitude difference of nodes; 1 = reachable, ∞ = not reachable */
 
         for (int i = 0; i < no_nodes; i++) {
-            cost[i] = (int *)malloc(sizeof(int) * no_nodes);
+            cost[i] = (int *) malloc(sizeof(int) * no_nodes);
         }
 
         /* initialize cost matrix */
@@ -158,12 +158,12 @@ int part_2(char input_file[]) {
 
         /* use dijikstra algorithm */
         int no_nodes = row * col;
-        int *distance = (int *)malloc(sizeof(int) * no_nodes);      /* distance from start to node; distance[end[0] + end[1] * col] has the solution */
-        int *visited = (int *)malloc(sizeof(int) * no_nodes);       /* record of visited nodes; 1 = visited, 0 = not visited */
-        int **cost = (int **)malloc(sizeof(int *) * no_nodes);      /* altitude difference of nodes; 1 = reachable, ∞ = not reachable */
+        int *distance = (int *) malloc(sizeof(int) * no_nodes);      /* distance from start to node; distance[end[0] + end[1] * col] has the solution */
+        int *visited = (int *) malloc(sizeof(int) * no_nodes);       /* record of visited nodes; 1 = visited, 0 = not visited */
+        int **cost = (int **) malloc(sizeof(int *) * no_nodes);      /* altitude difference of nodes; 1 = reachable, ∞ = not reachable */
 
         for (int i = 0; i < no_nodes; i++) {
-            cost[i] = (int *)malloc(sizeof(int) * no_nodes);
+            cost[i] = (int *) malloc(sizeof(int) * no_nodes);
         }
 
         /* initialize cost matrix */
