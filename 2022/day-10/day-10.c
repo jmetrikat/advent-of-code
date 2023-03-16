@@ -12,11 +12,27 @@ static int x;
 static int score;
 
 /* increment the cycle counter and update the score for given cycles */
-void tick() {
+void tick(void) {
     if (no_cycles == 20 || no_cycles == 60 || no_cycles == 100 || no_cycles == 140 || no_cycles == 180 || no_cycles == 220) {
         score += no_cycles * x;
     }
     no_cycles++;
+}
+
+/* increment the cycle counter and print a pixel */
+void tick_to_print(void) {
+    int printer_pos = no_cycles % 40;
+
+    /* if the x value (+1/-1) is in range of the printer, a # is printed */
+    if (printer_pos == x - 1 || printer_pos == x || printer_pos == x + 1) {
+        printf("#");
+    } else {
+        printf(".");
+    }
+
+    if (++no_cycles % 40 == 0) {
+        printf("\n");
+    }
 }
 
 /* solution part-1 */
@@ -56,22 +72,6 @@ int part_1(char input_file[]) {
     }
 
     return 0;
-}
-
-/* increment the cycle counter and print a pixel */
-void tick_to_print() {
-    int printer_pos = no_cycles % 40;
-
-    /* if the x value (+1/-1) is in range of the printer, a # is printed */
-    if (printer_pos == x - 1 || printer_pos == x || printer_pos == x + 1) {
-        printf("#");
-    } else {
-        printf(".");
-    }
-
-    if (++no_cycles % 40 == 0) {
-        printf("\n");
-    }
 }
 
 /* solution part-2 */

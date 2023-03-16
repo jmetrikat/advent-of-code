@@ -84,7 +84,6 @@ int part_1(char input_file[]) {
 /* solution part-2 */
 int part_2(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
-    char buffer[MAX_LENGTH];
 
     /* file opened successfully */
     if (fp != NULL) {
