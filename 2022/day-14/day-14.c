@@ -35,6 +35,11 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
 
         /* read coordinates */
         while (sscanf(p, "%d,%d", &x, &y) == 2) {
+            if (x >= WIDTH || y >= HEIGHT) {
+                fprintf(stderr, "Coordinates out of bounds: %d,%d\n", x, y);
+                exit(1);
+            }
+
             /* start drawing walls when second pair of coordinates is given */
             if (prev_x && prev_y) {
                 /* draw vertical wall */
@@ -42,13 +47,13 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
                     /* draw wall to the right */
                     if (y > prev_y) {
                         for (int i = prev_y; i <= y; i++) {
-                            cave_map[x][i] = WALL;
+                            cave_map[i][x] = WALL;
                         }
 
                     /* draw wall to the left */
                     } else {
                         for (int i = y; i <= prev_y; i++) {
-                            cave_map[x][i] = WALL;
+                            cave_map[i][x] = WALL;
                         }
                     }
 
@@ -57,13 +62,13 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
                     /* draw wall to the bottom */
                     if (x > prev_x) {
                         for (int i = prev_x; i <= x; i++) {
-                            cave_map[i][y] = WALL;
+                            cave_map[y][i] = WALL;
                         }
 
                     /* draw wall to the top */
                     } else {
                         for (int i = x; i <= prev_x; i++) {
-                            cave_map[i][y] = WALL;
+                            cave_map[y][i] = WALL;
                         }
                     }
                 }
@@ -88,28 +93,28 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
 
 /* pour sand from the top of the cave as long as it falls into the abyss */
 int pour_sand(cave_materials **cave_map) {
-    int sand[2] = {500, 0}; /* store x and y coordinates of falling sand */
+    int sand[] = {500, 0}; /* store x and y coordinates of falling sand */
 
     while (1) {
         /* sand is falling into the abyss */
-        if (sand[1] == WIDTH - 1 || cave_map[sand[0]][sand[1]] == SAND) {
+        if (sand[1] == HEIGHT - 1 || cave_map[sand[1]][sand[0]] == SAND) {
             return 0;
         }
 
         /* sand can move one step down */
-        if (cave_map[sand[0]][sand[1] + 1] == AIR) {
+        if (cave_map[sand[1] + 1][sand[0]] == AIR) {
             sand[1]++;
         /* sand can move one step down and to the left */
-        } else if (cave_map[sand[0] - 1][sand[1] + 1] == AIR) {
+        } else if (cave_map[sand[1] + 1][sand[0] - 1] == AIR) {
             sand[0]--;
             sand[1]++;
         /* sand can move one step down and to the right */
-        } else if (cave_map[sand[0] + 1][sand[1] + 1] == AIR) {
+        } else if (cave_map[sand[1] + 1][sand[0] + 1] == AIR) {
             sand[0]++;
             sand[1]++;
         /* sand can't move anymore */
         } else {
-            cave_map[sand[0]][sand[1]] = SAND;
+            cave_map[sand[1]][sand[0]] = SAND;
             return 1;
         }
     }
@@ -157,7 +162,7 @@ int part_2(char input_file[]) {
 
         /* add infinite horizontal wall at the bottom of the cave */
         for (int i = 0; i < WIDTH; i++) {
-            cave_map[i][highest_y_coordinate + 2] = WALL;
+            cave_map[highest_y_coordinate + 2][i] = WALL;
         }
 
         /* pour sand and count units that don't fall into the abyss */
