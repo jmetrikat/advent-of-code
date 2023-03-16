@@ -14,6 +14,12 @@ typedef enum { AIR,
                WALL,
                SAND } cave_materials;
 
+/* point struct */
+typedef struct point {
+    int x;
+    int y;
+} point;
+
 /* read cave map from input file */
 cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
     char buffer[MAX_LENGTH];
@@ -29,53 +35,53 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
 
     /* read input file and fill map with walls */
     while (fgets(buffer, MAX_LENGTH - 1, fp) != NULL) {
-        int prev_x = 0, prev_y = 0;
-        int x, y;
+        point prev = {0, 0};
+        point curr;
         char *p = buffer;
 
         /* read coordinates */
-        while (sscanf(p, "%d,%d", &x, &y) == 2) {
-            if (x >= WIDTH || y >= HEIGHT) {
-                fprintf(stderr, "Coordinates out of bounds: %d,%d\n", x, y);
+        while (sscanf(p, "%d,%d", &curr.x, &curr.y) == 2) {
+            if (curr.x >= WIDTH || curr.y >= HEIGHT) {
+                fprintf(stderr, "Coordinates out of bounds: %d,%d\n", curr.x, curr.y);
                 exit(1);
             }
 
             /* start drawing walls when second pair of coordinates is given */
-            if (prev_x && prev_y) {
+            if (prev.x && prev.y) {
                 /* draw vertical wall */
-                if (x == prev_x) {
+                if (curr.x == prev.x) {
                     /* draw wall to the right */
-                    if (y > prev_y) {
-                        for (int i = prev_y; i <= y; i++) {
-                            cave_map[i][x] = WALL;
+                    if (curr.y > prev.y) {
+                        for (int i = prev.y; i <= curr.y; i++) {
+                            cave_map[i][curr.x] = WALL;
                         }
 
                     /* draw wall to the left */
                     } else {
-                        for (int i = y; i <= prev_y; i++) {
-                            cave_map[i][x] = WALL;
+                        for (int i = curr.y; i <= prev.y; i++) {
+                            cave_map[i][curr.x] = WALL;
                         }
                     }
 
                 /* draw horizontal wall */
                 } else {
                     /* draw wall to the bottom */
-                    if (x > prev_x) {
-                        for (int i = prev_x; i <= x; i++) {
-                            cave_map[y][i] = WALL;
+                    if (curr.x > prev.x) {
+                        for (int i = prev.x; i <= curr.x; i++) {
+                            cave_map[curr.y][i] = WALL;
                         }
 
                     /* draw wall to the top */
                     } else {
-                        for (int i = x; i <= prev_x; i++) {
-                            cave_map[y][i] = WALL;
+                        for (int i = curr.x; i <= prev.x; i++) {
+                            cave_map[curr.y][i] = WALL;
                         }
                     }
                 }
 
                 /* update highest_y_coordinate */
                 if (highest_y_coordinate != NULL) {
-                    *highest_y_coordinate = y > *highest_y_coordinate ? y : *highest_y_coordinate;
+                    *highest_y_coordinate = curr.y > *highest_y_coordinate ? curr.y : *highest_y_coordinate;
                 }
             }
 
@@ -83,8 +89,8 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
             while (isdigit(*p) || *p == ',') p++;
             if (isblank(*p)) p += 4;
 
-            prev_x = x;
-            prev_y = y;
+            prev.x = curr.x;
+            prev.y = curr.y;
         }
     }
 
@@ -93,28 +99,28 @@ cave_materials **get_map(FILE *fp, int *highest_y_coordinate) {
 
 /* pour sand from the top of the cave as long as it falls into the abyss */
 int pour_sand(cave_materials **cave_map) {
-    int sand[] = {500, 0}; /* store x and y coordinates of falling sand */
+    point sand = {500, 0}; /* store x and y coordinates of falling sand */
 
     while (1) {
         /* sand is falling into the abyss */
-        if (sand[1] == HEIGHT - 1 || cave_map[sand[1]][sand[0]] == SAND) {
+        if (sand.y == HEIGHT - 1 || cave_map[sand.y][sand.x] == SAND) {
             return 0;
         }
 
         /* sand can move one step down */
-        if (cave_map[sand[1] + 1][sand[0]] == AIR) {
-            sand[1]++;
+        if (cave_map[sand.y + 1][sand.x] == AIR) {
+            sand.y++;
         /* sand can move one step down and to the left */
-        } else if (cave_map[sand[1] + 1][sand[0] - 1] == AIR) {
-            sand[0]--;
-            sand[1]++;
+        } else if (cave_map[sand.y + 1][sand.x - 1] == AIR) {
+            sand.x--;
+            sand.y++;
         /* sand can move one step down and to the right */
-        } else if (cave_map[sand[1] + 1][sand[0] + 1] == AIR) {
-            sand[0]++;
-            sand[1]++;
+        } else if (cave_map[sand.y + 1][sand.x + 1] == AIR) {
+            sand.x++;
+            sand.y++;
         /* sand can't move anymore */
         } else {
-            cave_map[sand[1]][sand[0]] = SAND;
+            cave_map[sand.y][sand.x] = SAND;
             return 1;
         }
     }

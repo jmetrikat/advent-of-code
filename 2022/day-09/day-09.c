@@ -11,11 +11,17 @@
 static int tail_pos_visited[MAX_POS][2];
 static int tail_pos_visited_count = 0;
 
+/* point struct */
+typedef struct point {
+    int x;
+    int y;
+} point;
+
 /* add position to tail_pos_visited */
-void add_pos(int *pos) {
+void add_pos(struct point pos) {
     int pos_found = 0;
     for (int i = 0; i < tail_pos_visited_count; i++) {
-        if (tail_pos_visited[i][0] == pos[0] && tail_pos_visited[i][1] == pos[1]) {
+        if (tail_pos_visited[i][0] == pos.x && tail_pos_visited[i][1] == pos.y) {
             pos_found = 1;
             break;
         }
@@ -27,8 +33,8 @@ void add_pos(int *pos) {
             exit(1);
         }
 
-        tail_pos_visited[tail_pos_visited_count][0] = pos[0];
-        tail_pos_visited[tail_pos_visited_count][1] = pos[1];
+        tail_pos_visited[tail_pos_visited_count][0] = pos.x;
+        tail_pos_visited[tail_pos_visited_count][1] = pos.y;
         tail_pos_visited_count++;
     }
 
@@ -44,8 +50,8 @@ int part_1(char input_file[]) {
     /* file opened successfully */
     if (fp != NULL) {
         /* initialize head and tail */
-        int head [] = {0, 0};
-        int tail [] = {0, 0};
+        point head = {0, 0};
+        point tail = {0, 0};
         add_pos(tail);
 
         while (fgets(buffer, MAX_LENGTH - 1, fp) != NULL) {
@@ -56,24 +62,24 @@ int part_1(char input_file[]) {
             for (int i = 0; i < steps; i++) {
                 switch (direction) {
                     case 'R':
-                        head[0] += 1;
+                        head.x += 1;
                         break;
                     case 'L':
-                        head[0] -= 1;
+                        head.x -= 1;
                         break;
                     case 'U':
-                        head[1] += 1;
+                        head.y += 1;
                         break;
                     case 'D':
-                        head[1] -= 1;
+                        head.y -= 1;
                         break;
                     default:
                         fprintf(stderr, "Invalid direction: '%c'\n", direction);
                         exit(1);
                 }
 
-                int diff_x = head[0] - tail[0];
-                int diff_y = head[1] - tail[1];
+                int diff_x = head.x - tail.x;
+                int diff_y = head.y - tail.y;
 
                 /* check if tail is touching head ... */
                 if (abs(diff_x) <= 1 && abs(diff_y) <= 1) {
@@ -81,8 +87,8 @@ int part_1(char input_file[]) {
 
                 /* ... otherwise adjust the tail with simple imlementation of signum function */
                 } else {
-                    tail[0] += (diff_x > 0) - (diff_x < 0);
-                    tail[1] += (diff_y > 0) - (diff_y < 0);
+                    tail.x += (diff_x > 0) - (diff_x < 0);
+                    tail.y += (diff_y > 0) - (diff_y < 0);
                     add_pos(tail);
                 }
             }
@@ -107,10 +113,10 @@ int part_2(char input_file[]) {
     /* file opened successfully */
     if (fp != NULL) {
         /* initialize head and tail */
-        int knots[NO_KNOTS][2];
+        point knots[NO_KNOTS];
         for (int i = 0; i < NO_KNOTS; i++) {
-            knots[i][0] = 0;
-            knots[i][1] = 0;
+            knots[i].x = 0;
+            knots[i].y = 0;
         }
         add_pos(knots[9]);
 
@@ -122,16 +128,16 @@ int part_2(char input_file[]) {
             for (int i = 0; i < steps; i++) {
                 switch (direction) {
                     case 'R':
-                        knots[0][0] += 1;
+                        knots[0].x += 1;
                         break;
                     case 'L':
-                        knots[0][0] -= 1;
+                        knots[0].x -= 1;
                         break;
                     case 'U':
-                        knots[0][1] += 1;
+                        knots[0].y += 1;
                         break;
                     case 'D':
-                        knots[0][1] -= 1;
+                        knots[0].y -= 1;
                         break;
                     default:
                         fprintf(stderr, "Invalid direction: '%c'\n", direction);
@@ -139,8 +145,8 @@ int part_2(char input_file[]) {
                 }
 
                 for (int i = 0; i < NO_KNOTS - 1; i++) {
-                    int diff_x = knots[i][0] - knots[i + 1][0];
-                    int diff_y = knots[i][1] - knots[i + 1][1];
+                    int diff_x = knots[i].x - knots[i + 1].x;
+                    int diff_y = knots[i].y - knots[i + 1].y;
 
                     /* check if tail is touching head ... */
                     if (abs(diff_x) <= 1 && abs(diff_y) <= 1) {
@@ -148,8 +154,8 @@ int part_2(char input_file[]) {
 
                     /* ... otherwise adjust the tail with simple imlementation of signum function */
                     } else {
-                        knots[i + 1][0] += (diff_x > 0) - (diff_x < 0);
-                        knots[i + 1][1] += (diff_y > 0) - (diff_y < 0);
+                        knots[i + 1].x += (diff_x > 0) - (diff_x < 0);
+                        knots[i + 1].y += (diff_y > 0) - (diff_y < 0);
                     }
                 }
                 add_pos(knots[9]);
