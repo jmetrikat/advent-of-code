@@ -17,29 +17,30 @@ def check_directories() -> dict:
         for cmd in f.readlines():
             if cmd[0] == "$":
 
-                # nothing to do
+                # ls: nothing to do
                 if cmd[2:4] == "ls":
                     pass
 
                 elif cmd[2:4] == "cd":
-                    # change to root
+                    # cd /: change to root directory
                     if cmd[5:6] == "/":
                         path = "/root"
 
-                    # change to parent directory
+                    # cd ..:change to parent directory
                     elif cmd[5:7] == "..":
                         path = path[0:path.rfind("/")]
 
-                    # change to dir_name
+                    # cd <dir_name>: change to child directory
                     else:
                         dir_name = cmd[5:len(cmd) - 1]
                         path += "/" + dir_name
                         dirs.update({path: 0})
 
-            # nothing to do
+            # dir <dir_name>: nothing to do
             elif cmd[0:3] == "dir":
                 pass
 
+            # <filesize>: update sizes of directories
             else:
                 file_size = int(cmd[:cmd.rfind(" ")])
                 dir = path
@@ -56,7 +57,7 @@ def part_1():
     total_size = 0
     dirs = check_directories()
 
-    # add size of all directories greater than 100000
+    # add the size of all directories smaller than 100000
     for dir in dirs:
         if dirs[dir] < 100000:
             total_size += dirs[dir]

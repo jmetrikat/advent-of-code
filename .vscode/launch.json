@@ -1,20 +1,27 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug",
+            "name": "C/C++: Debug",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [
                 "${input:args}",
-                "input.txt",
+                "input.txt"
             ],
             "cwd": "${fileDirname}",
-            "preLaunchTask": "Build",
+            "preLaunchTask": "Build"
+        },
+        {
+            "name": "Python: Debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": [
+                "${input:args}"
+            ],
+            "cwd": "${fileDirname}",
         }
     ],
     "inputs": [
@@ -22,7 +29,7 @@
             "id": "args",
             "type": "promptString",
             "description": "Choose part 1 or 2",
-            "default": "-p1",
+            "default": "-p1"
         }
-    ],
+    ]
 }

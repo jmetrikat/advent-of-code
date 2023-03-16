@@ -12,13 +12,13 @@ static int tail_pos_visited[MAX_POS][2];
 static int tail_pos_visited_count = 0;
 
 /* point struct */
-typedef struct point {
+typedef struct {
     int x;
     int y;
 } point;
 
 /* add position to tail_pos_visited */
-void add_pos(struct point pos) {
+void add_pos(point pos) {
     int pos_found = 0;
     for (int i = 0; i < tail_pos_visited_count; i++) {
         if (tail_pos_visited[i][0] == pos.x && tail_pos_visited[i][1] == pos.y) {

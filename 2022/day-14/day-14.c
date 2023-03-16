@@ -15,7 +15,7 @@ typedef enum { AIR,
                SAND } cave_materials;
 
 /* point struct */
-typedef struct point {
+typedef struct {
     int x;
     int y;
 } point;
