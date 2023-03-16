@@ -8,7 +8,7 @@
 | 4   | [Camp Cleanup](./day-04/README.md) | [&#10003;](./day-04/day-04.c) | [&#10003;](./day-04/day-04.py) |
 | 5   | [Supply Stacks](./day-05/README.md) | [&#10003;](./day-05/day-05.c) | [&#10003;](./day-05/day-05.py) |
 | 6   | [Tuning Trouble](./day-06/README.md) | [&#10003;](./day-06/day-06.c) | [&#10003;](./day-06/day-06.py) |
-| 7   | [No Space Left On Device](./day-07/README.md) | [&#x231B;](./day-07/day-07.c) | [&#10003;](./day-07/day-07.py) |
+| 7   | [No Space Left On Device](./day-07/README.md) | [&#10003;](./day-07/day-07.c) | [&#10003;](./day-07/day-07.py) |
 | 8   | [Treetop Tree House](./day-08/README.md) | [&#10003;](./day-08/day-08.c) | [&#10003;](./day-08/day-08.py) |
 | 9   | [Rope Bridge](./day-09/README.md) | [&#10003;](./day-09/day-09.c) | [&#10003;](./day-09/day-09.py) |
 | 10  | [Cathode-Ray Tube](./day-10/README.md) | [&#10003;](./day-10/day-10.c) | [&#10003;](./day-10/day-10.py) |
