@@ -75,8 +75,9 @@ dict *check_directories(FILE *fp, int *dir_count) {
 
                 /* cd <dir_name>: change to child directory */
                 } else {
-                    char *dir_name = strstr(buffer, "$ cd ") + 5;                   /* get directory name */
-                    dir_name[strcspn(buffer, "\n") - strlen("$ cd ")] = '\0';       /* remove newline character */
+                    /* get directory name and remove newline character */
+                    char *dir_name = strstr(buffer, "$ cd ") + 5;
+                    dir_name[strcspn(buffer, "\n") - strlen("$ cd ")] = '\0';
 
                     create_path(curr_path, dir_name, path_buffer, strlen(curr_path) + strlen(dir_name) + 2);
                     curr_path = strdup(path_buffer);

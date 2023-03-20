@@ -49,6 +49,10 @@ def compare_pairs(a: list, b: list) -> int:
     elif isinstance(a, list) and isinstance(b, int):
         return compare_pairs(a, [b])
 
+    else:
+        print(f"Error: compare_pairs() got invalid arguments: {a} and {b}")
+        sys.exit(1)
+
 
 # solution part 1
 def part_1():
@@ -70,8 +74,8 @@ def part_1():
 # solution part 2
 def part_2():
     # index starts at 1 and div packet 1 is in front of div packet 2
-    divider_packet_1_index = 1
-    divider_packet_2_index = 2
+    divider_packet_1_idx = 1
+    divider_packet_2_idx = 2
 
     with open("input.txt", "r") as file:
         lines = [line.strip() for line in file.readlines()]
@@ -81,11 +85,11 @@ def part_2():
     for pair in pairs:
         for packet in pair:
             if compare_pairs(packet, [[2]]) == 1:
-                divider_packet_1_index += 1
+                divider_packet_1_idx += 1
             if compare_pairs(packet, [[6]]) == 1:
-                divider_packet_2_index += 1
+                divider_packet_2_idx += 1
 
-    decoder_key = divider_packet_1_index * divider_packet_2_index
+    decoder_key = divider_packet_1_idx * divider_packet_2_idx
     print(decoder_key)
 
 

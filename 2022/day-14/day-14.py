@@ -6,13 +6,13 @@
 import sys
 
 highest_y_coordinate = 0
-heigth = 1000
+height = 1000
 width = 1000
 
 
 def get_map() -> list:
     global highest_y_coordinate
-    cave_map = [['.' for _ in range(width)] for _ in range(heigth)]
+    cave_map = [['.' for _ in range(width)] for _ in range(height)]
 
     with open("input.txt") as f:
         rocks = [line.strip().split(' -> ') for line in f.readlines()]
@@ -49,18 +49,18 @@ def get_map() -> list:
                         cave_map[y][x] = '#'
 
             # update highest y coordinate
-            highest_y_coordinate = max(y, prev_y , highest_y_coordinate)
+            highest_y_coordinate = max(y, prev_y, highest_y_coordinate)
 
     return cave_map
 
 
 def pour_sand(cave_map: list) -> int:
-    global heigth
+    global height
     sand = [500, 0]
 
     while True:
         # sand is falling into the abyss
-        if sand[1] == heigth - 1 or cave_map[sand[1]][sand[0]] == 'o':
+        if sand[1] == height - 1 or cave_map[sand[1]][sand[0]] == 'o':
             return 0
 
         # sand can move one step down
