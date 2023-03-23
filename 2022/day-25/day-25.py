@@ -3,7 +3,9 @@
 
 """ --- Advent of Code 2023 - Day 25: Full of Hot Air --- """
 
+import os
 import sys
+
 base = 5
 
 
@@ -79,6 +81,8 @@ def part_2():
 
 
 # main entry point
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 if len(sys.argv) > 1 and sys.argv[1] == "-p1":
     part_1()
 elif len(sys.argv) > 1 and sys.argv[1] == "-p2":

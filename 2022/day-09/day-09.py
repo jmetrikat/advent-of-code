@@ -4,6 +4,7 @@
 """ --- Advent of Code 2022 - Day 9: Rope Bridge --- """
 
 import numpy as np
+import os
 import sys
 
 
@@ -97,6 +98,8 @@ def part_2():
 
 
 # main entry point
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 if len(sys.argv) > 1 and sys.argv[1] == "-p1":
     part_1()
 elif len(sys.argv) > 1 and sys.argv[1] == "-p2":

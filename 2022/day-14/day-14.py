@@ -3,6 +3,7 @@
 
 """ --- Advent of Code 2023 - Day 14: Regolith Reservoir --- """
 
+import os
 import sys
 
 highest_y_coordinate = 0
@@ -110,6 +111,8 @@ def part_2():
 
 
 # main entry point
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 if len(sys.argv) > 1 and sys.argv[1] == "-p1":
     part_1()
 elif len(sys.argv) > 1 and sys.argv[1] == "-p2":
