@@ -9,8 +9,8 @@ import sys
 locations = set()
 
 
-# get the initial coordinates of the five different types of rocks
-def generate_rocks(rock_type, y) -> tuple:
+# get the initial coordinates of the five different rock types
+def generate_rock(rock_type, y) -> tuple:
     match rock_type:
         case 0:
             return ((2, y), (3, y), (4, y), (5, y))                     # flat
@@ -46,28 +46,19 @@ def moveable(rock: tuple, dir: str) -> bool:
 
 # move rock according to jet direction
 def move(rock: tuple, dir: str) -> tuple:
-    # move left and check if rock is still in bounds
-    if dir == "<":
-        new_rock = tuple((x - 1, y) for x, y in rock)
-        if new_rock[0][0] < 0:
-            return rock
-        else:
-            return new_rock
+    # move left if rock is still in bounds
+    if dir == "<" and rock[0][0] > 0:
+        return tuple((x - 1, y) for x, y in rock)
 
-    # move right and check if rock is still in bounds
-    elif dir == ">":
-        new_rock = tuple((x + 1, y) for x, y in rock)
-        if new_rock[-1][0] == 7:
-            return rock
-        else:
-            return new_rock
+    # move right if rock is still in bounds
+    elif dir == ">" and rock[-1][0] < 6:
+        return tuple((x + 1, y) for x, y in rock)
+
+    # return original rock if no movement is possible
+    elif dir == "<" or dir == ">":
+        return rock
 
     raise ValueError("Invalid direction '" + dir + "'")
-
-
-# drop rock one step
-def drop(rock: tuple) -> tuple:
-    return tuple((x, y - 1) for x, y in rock)
 
 
 # check if rock can be dropped one step
@@ -82,13 +73,18 @@ def dropable(rock: tuple) -> bool:
     return True
 
 
+# drop rock one step
+def drop(rock: tuple) -> tuple:
+    return tuple((x, y - 1) for x, y in rock)
+
+
 # drop rocks until max_iterations is reached
 def drop_rocks(directions: str, max_iterations: int) -> int:
-    counter = 0
+    rock_counter = 0
     max_y = 0
 
     # generate first rock
-    rock = generate_rocks(counter, max_y + 4)
+    rock = generate_rock(rock_counter % 5, max_y + 4)
 
     while True:
         for dir in directions:
@@ -97,23 +93,19 @@ def drop_rocks(directions: str, max_iterations: int) -> int:
 
             if dropable(rock):
                 rock = drop(rock)
-
             else:
                 # add location of settled rock to locations
                 locations.update((x, y) for x, y in rock)
 
                 # adjust max_y to give next rock enough space
-                max_rock_y = max(y for _, y in rock)
-                if max_rock_y > max_y:
-                    max_y = max_rock_y
-
-                counter += 1
+                max_y = max(max_y, max(y for _, y in rock))
 
                 # check if max_iterations is reached, otherwise generate next rock
-                if counter == max_iterations:
+                if (rock_counter + 1) == max_iterations:
                     return max_y
                 else:
-                    rock = generate_rocks(counter % 5, max_y + 4)
+                    rock_counter += 1
+                    rock = generate_rock(rock_counter % 5, max_y + 4)
 
 
 # solution part 1
