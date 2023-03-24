@@ -1,0 +1,29 @@
+# 🗓️ 2023: Progress Tracker
+
+| Day | Task | … | Python |
+| --- | ----- | - | ------ |
+| 1   | […](./day-01/README.md) | [&#x231B;](./day-01/day-01.c) | [&#x231B;](./day-01/day-01.py) |
+| 2   | […](./day-02/README.md) | [&#x231B;](./day-02/day-02.c) | [&#x231B;](./day-02/day-02.py) |
+| 3   | […](./day-03/README.md) | [&#x231B;](./day-03/day-03.c) | [&#x231B;](./day-03/day-03.py) |
+| 4   | […](./day-04/README.md) | [&#x231B;](./day-04/day-04.c) | [&#x231B;](./day-04/day-04.py) |
+| 5   | […](./day-05/README.md) | [&#x231B;](./day-05/day-05.c) | [&#x231B;](./day-05/day-05.py) |
+| 6   | […](./day-06/README.md) | [&#x231B;](./day-06/day-06.c) | [&#x231B;](./day-06/day-06.py) |
+| 7   | […](./day-07/README.md) | [&#x231B;](./day-07/day-07.c) | [&#x231B;](./day-07/day-07.py) |
+| 8   | […](./day-08/README.md) | [&#x231B;](./day-08/day-08.c) | [&#x231B;](./day-08/day-08.py) |
+| 9   | […](./day-09/README.md) | [&#x231B;](./day-09/day-09.c) | [&#x231B;](./day-09/day-09.py) |
+| 10  | […](./day-10/README.md) | [&#x231B;](./day-10/day-10.c) | [&#x231B;](./day-10/day-10.py) |
+| 11  | […](./day-11/README.md) | [&#x231B;](./day-11/day-11.c) | [&#x231B;](./day-11/day-11.py) |
+| 12  | […](./day-12/README.md) | [&#x231B;](./day-12/day-12.c) | [&#x231B;](./day-12/day-12.py) |
+| 13  | […](./day-13/README.md) | [&#x231B;](./day-13/day-13.c) | [&#x231B;](./day-13/day-13.py) |
+| 14  | […](./day-14/README.md) | [&#x231B;](./day-14/day-14.c) | [&#x231B;](./day-14/day-14.py) |
+| 15  | […](./day-15/README.md) | [&#x231B;](./day-15/day-15.c) | [&#x231B;](./day-15/day-15.py) |
+| 16  | […](./day-16/README.md) | [&#x231B;](./day-16/day-16.c) | [&#x231B;](./day-16/day-16.py) |
+| 17  | […](./day-17/README.md) | [&#x231B;](./day-17/day-17.c) | [&#x231B;](./day-17/day-17.py) |
+| 18  | […](./day-18/README.md) | [&#x231B;](./day-18/day-18.c) | [&#x231B;](./day-18/day-18.py) |
+| 19  | […](./day-19/README.md) | [&#x231B;](./day-19/day-19.c) | [&#x231B;](./day-19/day-19.py) |
+| 20  | […](./day-20/README.md) | [&#x231B;](./day-20/day-20.c) | [&#x231B;](./day-20/day-20.py) |
+| 21  | […](./day-21/README.md) | [&#x231B;](./day-21/day-21.c) | [&#x231B;](./day-21/day-21.py) |
+| 22  | […](./day-22/README.md) | [&#x231B;](./day-22/day-22.c) | [&#x231B;](./day-22/day-22.py) |
+| 23  | […](./day-23/README.md) | [&#x231B;](./day-23/day-23.c) | [&#x231B;](./day-23/day-23.py) |
+| 24  | […](./day-24/README.md) | [&#x231B;](./day-24/day-24.c) | [&#x231B;](./day-24/day-24.py) |
+| 25  | […](./day-25/README.md) | [&#x231B;](./day-25/day-25.c) | [&#x231B;](./day-25/day-25.py) |
