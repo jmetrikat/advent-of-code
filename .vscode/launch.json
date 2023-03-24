@@ -1,28 +1,32 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "C/C++: Debug",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [
-                "${input:args}",
-                "input.txt"
-            ],
-            "cwd": "${fileDirname}",
-            "preLaunchTask": "Build"
-        },
-        {
-            "name": "Python: Debug",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "args": [
-                "${input:args}"
-            ],
-            "cwd": "${fileDirname}",
-        }
+      {
+        "type": "lldb",
+        "request": "launch",
+        "name": "C/C++: Debug",
+        "program": "${fileDirname}/${fileBasenameNoExtension}",
+        "args": ["${input:args}", "input.txt"],
+        "cwd": "${fileDirname}",
+        "preLaunchTask": "Build"
+      },
+      {
+        "type": "lldb",
+        "request": "launch",
+        "name": "C/C++: Test",
+        "program": "${fileDirname}/${fileBasenameNoExtension}",
+        "args": ["${input:args}", "test.txt"],
+        "cwd": "${fileDirname}",
+        "preLaunchTask": "Build"
+      },
+      {
+        "name": "Python: Debug",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "args": ["${input:args}"],
+        "cwd": "${fileDirname}"
+      }
     ],
     "inputs": [
         {
