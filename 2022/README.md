@@ -18,7 +18,7 @@
 | 14  | [Regolith Reservoir](./day-14/README.md) | [&#10003;](./day-14/day-14.c) | [&#10003;](./day-14/day-14.py) |
 | 15  | [Beacon Exclusion Zone](./day-15/README.md) | [&#x231B;](./day-15/day-15.c) | [&#x231B;](./day-15/day-15.py) |
 | 16  | [Proboscidea Volcanium](./day-16/README.md) | [&#x231B;](./day-16/day-16.c) | [&#x231B;](./day-16/day-16.py) |
-| 17  | [Pyroclastic Flow](./day-17/README.md) | [&#x231B;](./day-17/day-17.c) | [&#10003;](./day-17/day-17.py) |
+| 17  | [Pyroclastic Flow](./day-17/README.md) | [&#10003;](./day-17/day-17.c) | [&#10003;](./day-17/day-17.py) |
 | 18  | [Boiling Boulders](./day-18/README.md) | [&#x231B;](./day-18/day-18.c) | [&#x231B;](./day-18/day-18.py) |
 | 19  | [Not Enough Minerals](./day-19/README.md) | [&#x231B;](./day-19/day-19.c) | [&#x231B;](./day-19/day-19.py) |
 | 20  | [Grove Positioning System](./day-20/README.md) | [&#x231B;](./day-20/day-20.c) | [&#x231B;](./day-20/day-20.py) |
