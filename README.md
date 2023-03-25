@@ -1,5 +1,5 @@
 # 🎄 Advent of Code
-![Advent of Code](https://img.shields.io/badge/Advent_of_Code-2022-RED.svg?style=flat-square&logo=adventofcode)
+![Advent of Code](https://img.shields.io/badge/Advent_of_Code-54c637?style=flat-square&logo=adventofcode)
 ![C](https://img.shields.io/badge/C-grey?style=flat-square&logo=c&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-grey?style=flat-square&logo=python&logoColor=white)
 
