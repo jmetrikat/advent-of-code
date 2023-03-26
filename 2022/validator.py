@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""--- Advent of Code 2022 - Validator ---"""
+""" --- Advent of Code 2022 - Validator --- """
 
 import os
 import subprocess
 
-# expected outputs for each day
+repo_path = "/Users/jmetrikat/Code/jmetrikat/advent-of-code"
+timeout_in_seconds = 10
 EXPECTED_OUTPUTS = {
     "day-01": ("66487", "197301"),
     "day-02": ("15523", "15702"),
@@ -39,11 +40,13 @@ EXPECTED_OUTPUTS = {
 # run part 1 and part 2 of each day
 def run_python_solution(day, part):
     try:
-        os.chdir(f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}")
-        output = subprocess.check_output(["/opt/homebrew/bin/python3.11", f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/day-{day[-2:]}.py", f"-p{part}"], stderr=subprocess.STDOUT)
+        os.chdir(f"{repo_path}/2022/{day}")
+        output = subprocess.check_output(["/opt/homebrew/bin/python3.11", f"{repo_path}/2022/{day}/day-{day[-2:]}.py", f"-p{part}"], stderr=subprocess.STDOUT, timeout=timeout_in_seconds)
         return output.strip().decode("utf-8")
+    except subprocess.TimeoutExpired:
+        return f" Part {part} timed out after {timeout_in_seconds} seconds."
     except subprocess.CalledProcessError as e:
-        print(f"Error running day {day} part {part}:")
+        print(f"Error running {day} part {part}:")
         print(e.output.decode("utf-8"))
         return None
 
@@ -51,10 +54,12 @@ def run_python_solution(day, part):
 # run part 1 and part 2 of each day using C
 def run_c_solution(day, part):
     try:
-        output = subprocess.check_output([f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/day-{day[-2:]}", f"-p{part}", f"/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022/{day}/input.txt"], stderr=subprocess.STDOUT)
+        output = subprocess.check_output([f"{repo_path}/2022/{day}/day-{day[-2:]}", f"-p{part}", f"{repo_path}/2022/{day}/input.txt"], stderr=subprocess.STDOUT, timeout=timeout_in_seconds)
         return output.strip().decode("utf-8")
+    except subprocess.TimeoutExpired:
+        return f" Part {part} timed out after {timeout_in_seconds} seconds."
     except subprocess.CalledProcessError as e:
-        print(f"Error running day {day} part {part}:")
+        print(f"Error running {day} part {part}:")
         print(e.output.decode("utf-8"))
         return None
 
@@ -75,14 +80,26 @@ def validate_solution(day, choice):
 
     if output_part_1 == expected_output[0] and output_part_2 == expected_output[1]:
         print(f"Day-{day[-2:]} is correct!")
+        return 0
+
     else:
         print(f"Day-{day[-2:]} is incorrect:")
-        if output_part_1 != expected_output[0]:
+
+        if output_part_1 == expected_output[0]:
+            print(f" Part 1 is correct!")
+        elif "timed out" in output_part_1:
+            print(output_part_1)
+        elif output_part_1 != expected_output[0]:
             print(f" Part 1 output: expected '{expected_output[0]}', got '{output_part_1}'")
-        if output_part_2 != expected_output[1]:
+
+        if output_part_2 == expected_output[1]:
+            print(f" Part 2 is correct!")
+        elif "timed out" in output_part_2:
+            print(output_part_2)
+        elif output_part_2 != expected_output[1]:
             print(f" Part 2 output: expected '{expected_output[1]}', got '{output_part_2}'")
 
-
+        return 1
 
 
 # main entry point
@@ -94,21 +111,34 @@ choice = input("Your choice: ")
 
 # run c solutions
 if choice == "1":
-    os.chdir("/Users/jmetrikat/Code/jmetrikat/advent-of-code/2022")
+    correct = 0
+    lang = "C"
+
+    os.chdir(f"{repo_path}/2022")
     subprocess.run(["make", "clean"], check=True)
     subprocess.run(["make", "all"], check=True, stderr=subprocess.DEVNULL)
 
     for i in range(1, 26):
         day = f"day-{i:02}"
-        validate_solution(day, "1")
+        if validate_solution(day, "2") == 0:
+            correct += 1
 
+    os.chdir(f"{repo_path}/2022")
     subprocess.run(["make", "clean"], check=True)
+    print('\033[1m' + f"{correct}/25 days correct in {lang}." + '\033[0m')
 
 # run python solutions
 elif choice == "2":
+    correct = 0
+    lang = "Python"
+
     for i in range(1, 26):
         day = f"day-{i:02}"
-        validate_solution(day, "2")
+        if validate_solution(day, "2") == 0:
+            correct += 1
+
+    print('\033[1m' + f"{correct}/25 days correct in {lang}." + '\033[0m')
+
 else:
     print("Invalid choice")
     exit(1)
