@@ -37,8 +37,8 @@ EXPECTED_OUTPUTS = {
 }
 
 
-# run part 1 and part 2 of each day
-def run_python_solution(day, part):
+# run part 1 and part 2 of each day in Python
+def run_python_solution(day: str, part: int) -> str:
     try:
         os.chdir(f"{repo_path}/2022/{day}")
         output = subprocess.check_output(["/opt/homebrew/bin/python3.11", f"{repo_path}/2022/{day}/day-{day[-2:]}.py", f"-p{part}"], stderr=subprocess.STDOUT, timeout=timeout_in_seconds)
@@ -51,8 +51,8 @@ def run_python_solution(day, part):
         return None
 
 
-# run part 1 and part 2 of each day using C
-def run_c_solution(day, part):
+# run part 1 and part 2 of each day in C
+def run_c_solution(day: str, part: int) -> str:
     try:
         output = subprocess.check_output([f"{repo_path}/2022/{day}/day-{day[-2:]}", f"-p{part}", f"{repo_path}/2022/{day}/input.txt"], stderr=subprocess.STDOUT, timeout=timeout_in_seconds)
         return output.strip().decode("utf-8")
@@ -65,7 +65,7 @@ def run_c_solution(day, part):
 
 
 # validate each day
-def validate_solution(day, choice):
+def validate_solution(day: str, choice: str) -> int:
     expected_output = EXPECTED_OUTPUTS[day]
     if expected_output == ("", ""):
         print(f"Day-{day[-2:]} is still missing.")
@@ -102,8 +102,7 @@ def validate_solution(day, choice):
         return 1
 
 
-# main entry point
-# ask user to choose between c and python
+# main entry point: ask user to choose between C and Python
 print("Choose a language:")
 print(" 1) C")
 print(" 2) Python")
