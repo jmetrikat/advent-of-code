@@ -59,6 +59,19 @@ def run_c_solution(day: str, part: int) -> str:
     except subprocess.CalledProcessError as e:
         return e.output.decode("utf-8")
 
+
+# validate part 1 and part 2 of each day
+def validate_part(expected_output: str, actual_output: str, part: int) -> (bool, str):
+    if actual_output == expected_output:
+        return True, f" Part {part} is correct!"
+    elif "timed out" in actual_output:
+        return False, f" Part {part} timed out after {timeout_in_seconds} seconds."
+    elif "can't open file" in actual_output:
+        return False, f" Part {part}: File not found."
+    else:
+        return False, f" Part {part} output: expected '{expected_output}', got '{actual_output}'"
+
+
 # validate each day
 def validate_solution(day: str, choice: str) -> int:
     expected_output = EXPECTED_OUTPUTS[day]
@@ -73,32 +86,15 @@ def validate_solution(day: str, choice: str) -> int:
         output_part_1 = run_python_solution(day, 1)
         output_part_2 = run_python_solution(day, 2)
 
-    if output_part_1 == expected_output[0] and output_part_2 == expected_output[1]:
-        print(f"Day-{day[-2:]} is correct!")
-        return 0
+    part1_is_correct, message_1 = validate_part(expected_output[0], output_part_1, 1)
+    part2_is_correct, message_2 = validate_part(expected_output[1], output_part_2, 2)
 
-    else:
-        print(f"Day-{day[-2:]} is incorrect:")
+    print(f"Day-{day[-2:]} is {'correct.' if part1_is_correct and part2_is_correct else 'incorrect:'}")
+    if not (part1_is_correct and part2_is_correct):
+        print(message_1)
+        print(message_2)
 
-        if output_part_1 == expected_output[0]:
-            print(f" Part 1 is correct!")
-        elif "timed out" in output_part_1:
-            print(f" Part 1 timed out after {timeout_in_seconds} seconds.")
-        elif "can't open file" in output_part_1:
-            print(f" Part 1: File not found.")
-        elif output_part_1 != expected_output[0]:
-            print(f" Part 1 output: expected '{expected_output[0]}', got '{output_part_1}'")
-
-        if output_part_2 == expected_output[1]:
-            print(f" Part 2 is correct!")
-        elif "timed out" in output_part_2:
-            print(f" Part 2 timed out after {timeout_in_seconds} seconds.")
-        elif "can't open file" in output_part_2:
-            print(f" Part 2: File not found.")
-        elif output_part_2 != expected_output[1]:
-            print(f" Part 2 output: expected '{expected_output[1]}', got '{output_part_2}'")
-
-        return 1
+    return 0 if part1_is_correct and part2_is_correct else 1
 
 
 # main entry point: ask user to choose between C and Python
