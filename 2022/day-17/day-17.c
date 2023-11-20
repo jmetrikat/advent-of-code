@@ -192,7 +192,7 @@ void print_locations(int max_y, int max_x, rockT *rock, int settled) {
 }
 
 /* drop rocks until max_iterations is reached */
-int drop_rocks(char *direction, int max_iterations) {
+int drop_rocks(char *direction, long max_iterations) {
     extern int locations_counter;
     int direction_counter = 0;
     int max_y = 0;
@@ -276,9 +276,23 @@ int part_2(char input_file[]) {
     FILE *fp = fopen(input_file, "r");
     char buffer[MAX_LENGTH];
 
+    extern int locations[MAX_LENGTH][2];
+    extern int locations_counter;
+
     /* file opened successfully */
     if (fp != NULL) {
-        // TODO
+        if (fgets(buffer, MAX_LENGTH, fp) == NULL) {
+            fprintf(stderr, "Problems reading file '%s'\n", input_file);
+            exit(1);
+        }
+
+        /* add floor to locations */
+        for (locations_counter = 0; locations_counter < 8; locations_counter++) {
+            locations[locations_counter][0] = locations_counter;
+            locations[locations_counter][1] = 0;
+        }
+
+        printf("%d\n", drop_rocks(buffer, 1000000000000));
 
     /* file not found */
     } else {
