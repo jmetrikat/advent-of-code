@@ -191,8 +191,6 @@ int part_2(char input_file[]) {
             }
         }
 
-
-
         /* initialize distance and visited */
         for (int i = 0; i < no_nodes; i++) {
             distance[i] = cost[end[0] + end[1] * col][i];
