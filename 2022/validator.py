@@ -23,16 +23,16 @@ EXPECTED_OUTPUTS = {
     "day-12": ("330", "321"),
     "day-13": ("6420", "22000"),
     "day-14": ("1072", "24659"),
-    "day-15": ("", ""),
+    "day-15": ("5367037", "11914583249288"),
     "day-16": ("", ""),
     "day-17": ("3127", "1514285714288"),
-    "day-18": ("", ""),
+    "day-18": ("3326", "1996"),
     "day-19": ("", ""),
-    "day-20": ("", ""),
-    "day-21": ("", ""),
-    "day-22": ("", ""),
-    "day-23": ("", ""),
-    "day-24": ("", ""),
+    "day-20": ("11123", "4248669215955"),
+    "day-21": ("93813115694560", "3910938071092"),
+    "day-22": ("3590", "86382"),
+    "day-23": ("4109", "1055"),
+    "day-24": ("247", "728"),
     "day-25": ("20=2-02-0---02=22=21", ":)"),
 }
 
@@ -43,12 +43,10 @@ def run_python_solution(day: str, part: int) -> str:
         os.chdir(f"{repo_path}/2022/{day}")
         output = subprocess.check_output(["/opt/homebrew/bin/python3.11", f"{repo_path}/2022/{day}/day-{day[-2:]}.py", f"-p{part}"], stderr=subprocess.STDOUT, timeout=timeout_in_seconds)
         return output.strip().decode("utf-8")
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired as e:
         return f" Part {part} timed out after {timeout_in_seconds} seconds."
     except subprocess.CalledProcessError as e:
-        print(f"Error running {day} part {part}:")
-        print(e.output.decode("utf-8"))
-        return None
+        return e.output.decode("utf-8")
 
 
 # run part 1 and part 2 of each day in C
@@ -56,13 +54,10 @@ def run_c_solution(day: str, part: int) -> str:
     try:
         output = subprocess.check_output([f"{repo_path}/2022/{day}/day-{day[-2:]}", f"-p{part}", f"{repo_path}/2022/{day}/input.txt"], stderr=subprocess.STDOUT, timeout=timeout_in_seconds)
         return output.strip().decode("utf-8")
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired as e:
         return f" Part {part} timed out after {timeout_in_seconds} seconds."
     except subprocess.CalledProcessError as e:
-        print(f"Error running {day} part {part}:")
-        print(e.output.decode("utf-8"))
-        return None
-
+        return e.output.decode("utf-8")
 
 # validate each day
 def validate_solution(day: str, choice: str) -> int:
@@ -88,14 +83,18 @@ def validate_solution(day: str, choice: str) -> int:
         if output_part_1 == expected_output[0]:
             print(f" Part 1 is correct!")
         elif "timed out" in output_part_1:
-            print(output_part_1)
+            print(f" Part 1 timed out after {timeout_in_seconds} seconds.")
+        elif "can't open file" in output_part_1:
+            print(f" Part 1: File not found.")
         elif output_part_1 != expected_output[0]:
             print(f" Part 1 output: expected '{expected_output[0]}', got '{output_part_1}'")
 
         if output_part_2 == expected_output[1]:
             print(f" Part 2 is correct!")
         elif "timed out" in output_part_2:
-            print(output_part_2)
+            print(f" Part 2 timed out after {timeout_in_seconds} seconds.")
+        elif "can't open file" in output_part_2:
+            print(f" Part 2: File not found.")
         elif output_part_2 != expected_output[1]:
             print(f" Part 2 output: expected '{expected_output[1]}', got '{output_part_2}'")
 
