@@ -1,4 +1,4 @@
-// Advent of Code 2023 - Day 1: a
+// Advent of Code 2023 - Day 2: Cube Conundrum
 
 package main
 
@@ -13,6 +13,7 @@ import (
 
 //go:embed input.txt
 var input string
+
 var availableCubes = map[string]int{
 	"red":   12,
 	"green": 13,
@@ -64,20 +65,22 @@ func checkGame(line string, minimumCubes map[string]int, part int) int {
 	if len(game) != 3 {
 		panic("Invalid game")
 	}
+
+	// split game data into sets of cubes
+	cubeSets := strings.Split(game[2], "; ")
 	gameNumber, err := strconv.Atoi(game[1])
 	if err != nil {
 		panic(err)
 	}
 
-	// split game data into sets of cubes
-	gameData := game[2]
-	cubeSets := strings.Split(gameData, "; ")
-
 	for _, set := range cubeSets {
-		noOfShownCubesByElf = make(map[string]int)
-		cubes := strings.Split(set, ", ")
+		// reset no of shown cubes by color
+		for color := range availableCubes {
+			noOfShownCubesByElf[color] = 0
+		}
 
 		// count shown cubes by color
+		cubes := strings.Split(set, ", ")
 		for _, cube := range cubes {
 			re := regexp.MustCompile(`(\d+) (\w+)`)
 			tuple := re.FindStringSubmatch(cube)
