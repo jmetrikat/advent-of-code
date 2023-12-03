@@ -19,6 +19,13 @@ func init() {
 	}
 }
 
+func parseInput(input string) (ans []string) {
+	for _, line := range strings.Split(input, "\n") {
+		ans = append(ans, line)
+	}
+	return ans
+}
+
 func part1(input string) int {
 	lines := parseInput(input)
 	sum := 0
@@ -78,20 +85,14 @@ func main() {
 		panic("Usage: ./main.go -p1|-p2")
 	}
 
-	if os.Args[1] == "-p1" {
+	switch os.Args[1] {
+	case "-p1":
 		ans := part1(input)
 		fmt.Println(ans)
-	} else if os.Args[1] == "-p2" {
+	case "-p2":
 		ans := part2(input)
 		fmt.Println(ans)
-	} else {
-		panic("Invalid flag passed")
+	default:
+		fmt.Println("Invalid flag passed")
 	}
-}
-
-func parseInput(input string) (ans []string) {
-	for _, line := range strings.Split(input, "\n") {
-		ans = append(ans, line)
-	}
-	return ans
 }
