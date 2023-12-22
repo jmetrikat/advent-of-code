@@ -58,20 +58,9 @@ func updateMinimumCubes(minimumCubes map[string]int, noOfShownCubesByElf map[str
 func checkGame(line string, minimumCubes map[string]int, part int) int {
 	noOfShownCubesByElf := make(map[string]int)
 
-	// split line into game number and game data
-	re := regexp.MustCompile(`^Game (\d+): (.*)$`)
-	game := re.FindStringSubmatch(line)
-
-	if len(game) != 3 {
-		panic("Invalid game")
-	}
-
 	// split game data into sets of cubes
-	cubeSets := strings.Split(game[2], "; ")
-	gameNumber, err := strconv.Atoi(game[1])
-	if err != nil {
-		panic(err)
-	}
+	re := regexp.MustCompile(`^Game (\d+): (.*)$`)
+	cubeSets := strings.Split(re.FindStringSubmatch(line)[2], "; ")
 
 	for _, set := range cubeSets {
 		// reset no of shown cubes by color
@@ -102,7 +91,7 @@ func checkGame(line string, minimumCubes map[string]int, part int) int {
 			minimumCubes = updateMinimumCubes(minimumCubes, noOfShownCubesByElf)
 		} else {
 			if !isValidGame(noOfShownCubesByElf) {
-				return 0
+				return -1
 			}
 		}
 	}
@@ -111,15 +100,17 @@ func checkGame(line string, minimumCubes map[string]int, part int) int {
 		return minimumCubes["red"] * minimumCubes["green"] * minimumCubes["blue"]
 	}
 
-	return gameNumber
+	return 0
 }
 
 func part1(input string) int {
 	lines := parseInput(input)
 	ans := 0
 
-	for _, line := range lines {
-		ans += checkGame(line, nil, 1)
+	for i, line := range lines {
+		if checkGame(line, nil, 1) == 0 {
+			ans += i + 1
+		}
 	}
 
 	return ans
