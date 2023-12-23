@@ -53,43 +53,22 @@ func getNumber(matrix [][]rune, i, j int) int {
 	return number
 }
 
-// check if symbol is adjacent to a digit
-func checkAdjacent(matrix [][]rune, i, start, end int) bool {
-	for l := i - 1; l <= i+1; l++ {
-		for k := start - 1; k <= end+1; k++ {
-			if k < 0 || l < 0 || k >= len(matrix[0]) || l >= len(matrix) || (l == i && (start <= k && k <= end)) {
-				continue
-			}
-			if matrix[l][k] != '.' && !unicode.IsDigit(matrix[l][k]) {
-				return true
-			}
-		}
-	}
-	return false
-}
-
 // check if a '*' symbol connects two numbers
-func checkAdjacentNumbers(matrix [][]rune, i, j int) (num1, num2 int) {
+func checkAdjacent(matrix [][]rune, i, j int) (nums []int) {
+	nums = make([]int, 0, 2)
 	for l := i - 1; l <= i+1; l++ {
 		prevWasDigit := false
 		for k := j - 1; k <= j+1; k++ {
-			if k < 0 || l < 0 || k >= len(matrix[0]) || l >= len(matrix) || (l == i && k == j) {
+			if k < 0 || l < 0 || k >= len(matrix[0]) || l >= len(matrix) || (l == i && k == j) || !unicode.IsDigit(matrix[l][k]) {
 				prevWasDigit = false
 				continue
-			}
-			if unicode.IsDigit(matrix[l][k]) && !prevWasDigit {
+			} else if unicode.IsDigit(matrix[l][k]) && !prevWasDigit {
 				prevWasDigit = true
-				if num1 == 0 {
-					num1 = getNumber(matrix, l, k)
-				} else {
-					num2 = getNumber(matrix, l, k)
-				}
-			} else if !unicode.IsDigit(matrix[l][k]) {
-				prevWasDigit = false
+				nums = append(nums, getNumber(matrix, l, k))
 			}
 		}
 	}
-	return num1, num2
+	return nums
 }
 
 func part1(input string) int {
@@ -97,27 +76,14 @@ func part1(input string) int {
 	matrix := createMatrix(lines)
 	ans := 0
 
-	// check all numbers for adjacent symbols
-	for i, line := range matrix {
-		prevWasDigit := false
-		number := 0
-		start := 0
+	// find all numbers adjacent to a symbol
+	for i, line := range lines {
 		for j, char := range line {
-			if unicode.IsDigit(char) {
-				if prevWasDigit {
-					number = number*10 + int(char-'0')
-				} else {
-					start = j
-					prevWasDigit = true
-					number = int(char - '0')
+			if char != '.' && !unicode.IsDigit(char) {
+				nums := checkAdjacent(matrix, i, j)
+				for _, num := range nums {
+					ans += num
 				}
-			}
-			if (!unicode.IsDigit(char) && prevWasDigit) || j == len(line)-1 {
-				if checkAdjacent(matrix, i, start, j-1) {
-					ans += number
-				}
-				prevWasDigit = false
-				number = 0
 			}
 		}
 	}
@@ -130,13 +96,13 @@ func part2(input string) int {
 	matrix := createMatrix(lines)
 	ans := 0
 
+	// find all numbers adjacent to a '*'
 	for i, line := range lines {
 		for j, char := range line {
 			if char == '*' {
-				num1, num2 := checkAdjacentNumbers(matrix, i, j)
-				if num1 != 0 && num2 != 0 {
-					fmt.Printf("[%d, %d]\n", num1, num2)
-					ans += num1 * num2
+				nums := checkAdjacent(matrix, i, j)
+				if len(nums) == 2 {
+					ans += nums[0] * nums[1]
 				}
 			}
 		}
