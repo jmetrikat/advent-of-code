@@ -5,7 +5,7 @@
 | 1   | [Trebuchet?!](./day-01/README.md) | [&#10003;](./day-01/main.go) |
 | 2   | [Cube Conundrum](./day-02/README.md) | [&#10003;](./day-02/main.go) |
 | 3   | [Gear Ratios](./day-03/README.md) | [&#10003;](./day-03/main.go) |
-| 4   | […](./day-04/README.md) | [&#x231B;](./day-04/main.go) |
+| 4   | [Scratchcards](./day-04/README.md) | [&#10003;](./day-04/main.go) |
 | 5   | […](./day-05/README.md) | [&#x231B;](./day-05/main.go) |
 | 6   | […](./day-06/README.md) | [&#x231B;](./day-06/main.go) |
 | 7   | […](./day-07/README.md) | [&#x231B;](./day-07/main.go) |
