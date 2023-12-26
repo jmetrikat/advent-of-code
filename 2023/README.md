@@ -7,7 +7,7 @@
 | 3   | [Gear Ratios](./day-03/README.md) | [&#10003;](./day-03/main.go) |
 | 4   | [Scratchcards](./day-04/README.md) | [&#10003;](./day-04/main.go) |
 | 5   | [If You Give A Seed A Fertilizer](./day-05/README.md) | [&#10003;](./day-05/main.go) |
-| 6   | […](./day-06/README.md) | [&#x231B;](./day-06/main.go) |
+| 6   | [Wait For It](./day-06/README.md) | [&#10003;](./day-06/main.go) |
 | 7   | […](./day-07/README.md) | [&#x231B;](./day-07/main.go) |
 | 8   | […](./day-08/README.md) | [&#x231B;](./day-08/main.go) |
 | 9   | […](./day-09/README.md) | [&#x231B;](./day-09/main.go) |
