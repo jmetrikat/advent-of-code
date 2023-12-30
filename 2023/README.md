@@ -9,7 +9,7 @@
 | 5   | [If You Give A Seed A Fertilizer](./day-05/README.md) | [&#10003;](./day-05/main.go) |
 | 6   | [Wait For It](./day-06/README.md) | [&#10003;](./day-06/main.go) |
 | 7   | [Camel Cards](./day-07/README.md) | [&#10003;](./day-07/main.go) |
-| 8   | […](./day-08/README.md) | [&#x231B;](./day-08/main.go) |
+| 8   | [Haunted Wasteland](./day-08/README.md) | [&#10003;](./day-08/main.go) |
 | 9   | […](./day-09/README.md) | [&#x231B;](./day-09/main.go) |
 | 10  | […](./day-10/README.md) | [&#x231B;](./day-10/main.go) |
 | 11  | […](./day-11/README.md) | [&#x231B;](./day-11/main.go) |
