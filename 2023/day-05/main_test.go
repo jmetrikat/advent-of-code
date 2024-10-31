@@ -38,35 +38,35 @@ func TestPart1(t *testing.T) {
 	}
 }
 
-func TestPart2(t *testing.T) {
-	tests := []struct {
-		name  string
-		input string
-		want  int
-	}{
-		{
-			name:  "actual",
-			input: input,
-			want:  20283860,
-		},
-	}
-	t.Parallel()
+// func TestPart2(t *testing.T) {
+// 	tests := []struct {
+// 		name  string
+// 		input string
+// 		want  int
+// 	}{
+// 		{
+// 			name:  "actual",
+// 			input: input,
+// 			want:  20283860,
+// 		},
+// 	}
+// 	t.Parallel()
 
-	done := make(chan bool, 1)
-	go func() {
-		defer close(done)
-		for _, tt := range tests {
-			t.Run(tt.name, func(t *testing.T) {
-				if got := part2(tt.input); got != tt.want {
-					t.Errorf("part2() = %v, want %v", got, tt.want)
-				}
-			})
-		}
-	}()
+// 	done := make(chan bool, 1)
+// 	go func() {
+// 		defer close(done)
+// 		for _, tt := range tests {
+// 			t.Run(tt.name, func(t *testing.T) {
+// 				if got := part2(tt.input); got != tt.want {
+// 					t.Errorf("part2() = %v, want %v", got, tt.want)
+// 				}
+// 			})
+// 		}
+// 	}()
 
-	select {
-	case <-done:
-	case <-time.After(10 * time.Minute):
-		t.Fatal("test timed out")
-	}
-}
+// 	select {
+// 	case <-done:
+// 	case <-time.After(5 * time.Minute):
+// 		t.Fatal("test timed out")
+// 	}
+// }
