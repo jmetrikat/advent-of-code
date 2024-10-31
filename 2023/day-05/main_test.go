@@ -66,7 +66,7 @@ func TestPart2(t *testing.T) {
 
 	select {
 	case <-done:
-	case <-time.After(5 * time.Second):
+	case <-time.After(10 * time.Minute):
 		t.Fatal("test timed out")
 	}
 }

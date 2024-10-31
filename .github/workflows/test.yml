@@ -1,5 +1,3 @@
-name: Run Go Tests in 2023 Directory
-
 on:
   push:
     branches:
@@ -17,7 +15,7 @@ jobs:
         with:
           go-version: '1.23'
 
-      - name: Run tests in 2023 directory
+      - name: Run Go tests for 2023
         run: |
           cd 2023
           for dir in */; do
