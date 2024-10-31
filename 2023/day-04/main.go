@@ -125,7 +125,7 @@ func part2(input string) int {
 
 func main() {
 	if len(os.Args) != 2 {
-		panic("Usage: ./main.go -p1|-p2")
+		panic("Usage: go run main.go -p1|-p2")
 	}
 
 	switch os.Args[1] {
